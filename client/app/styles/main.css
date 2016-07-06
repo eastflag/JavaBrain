@@ -5,9 +5,64 @@
   padding: 0.2em 0;
 }
 
-body {
+/*@font-face {
+  font-family:'NanumGothic';
+  src: url('/resources/images/NanumGothic.eot');
+  src: url('/resources/images/NanumGothic.eot?#iefix') format('embedded-opentype'),
+  url('/resources/images/NanumGothic.woff') format('woff'),
+  url('/resources/images/NanumGothic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}*/
+
+* {
+  margin: 0;
   padding: 0;
 }
+
+body {
+/*  font-family: 'NanumGothic',dotum,"돋음",sans-serif;*/
+  font-size: 14px;
+  line-height: 1.8em;
+}
+
+.side-menu ul{
+  list-style: none;
+  padding-left: 10px;
+}
+.side-menu li{
+  line-height: 2.5em;
+}
+.side-menu a {
+  text-decoration: none;
+}
+
+/* slide animation start---------------------------------------------*/
+.slide.ng-leave {
+  position: relative;
+}
+.slide.ng-enter {
+  position: absolute;
+}
+.slide.ng-enter, .slide.ng-leave {
+  -webkit-transition: -webkit-transform 0.3s ease-in, opacity 0.3s ease-in;
+  -moz-transition: -moz-transform 0.3s ease-in, opacity 0.3s ease-in;
+  -o-transition: -o-transform 0.3s ease-in, opacity 0.3s ease-in;
+  transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+}
+.slide.ng-enter, .slide.ng-leave.ng-leave-active {
+  -webkit-transform: scaleX(0.0001);
+  -o-transform: scaleX(0.0001);
+  transform: scaleX(0.0001);
+  opacity: 0;
+}
+.slide, .slide.ng-enter.ng-enter-active {
+  -webkit-transform: scaleX(1);
+  -o-transform: scaleX(1);
+  transform: scaleX(1);
+  opacity: 1;
+}
+/* slide animation end---------------------------------------------*/
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -19,8 +74,8 @@ body {
 
 /* Custom page header */
 .header {
-  border-bottom: 1px solid #e5e5e5;
-  margin-bottom: 10px;
+  /*border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 10px;*/
 }
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
@@ -60,9 +115,9 @@ body {
 }
 
 /* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 760px) {
   .container {
-    max-width: 730px;
+    max-width: 1200px;
   }
 
   /* Remove the padding we set earlier */
@@ -74,7 +129,7 @@ body {
   }
   /* Space out the masthead */
   .header {
-    margin-bottom: 30px;
+    //margin-bottom: 30px;
   }
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {

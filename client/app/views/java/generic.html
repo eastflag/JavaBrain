@@ -1,0 +1,51 @@
+<div class="panel panel-info">
+  <div class="panel-heading">
+    Generic
+  </div>
+  <div class="panel-body">
+    <h3>* 학습 자료</h3>
+    <div>
+      <a href="http://opentutorials.org/module/516/6237">참고 사이트1</a><br>
+      <a href="http://arabiannight.tistory.com/63">참고 사이트2</a><br>
+    </div>
+    <br>
+    <h3>* 학습목표</h3>
+    <div>
+      제네릭 문법 이해<br>
+      제네릭에 사용되는 T, K, V, E는 무엇인가?<br>
+    </div>
+    <br>
+    <h3>* 실습 1</h3>
+    <div>
+
+      <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">package</span> chapter03<span style="color: #333333">;</span>
+
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">q1</span> <span style="color: #333333">{</span>
+
+	<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">main</span><span style="color: #333333">(</span>String<span style="color: #333333">[]</span> args<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+
+		Result<span style="color: #333333">&lt;</span>String<span style="color: #333333">&gt;</span> a1 <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Result<span style="color: #333333">&lt;</span>String<span style="color: #333333">&gt;(</span><span style="background-color: #fff0f0">&quot;AAA&quot;</span><span style="color: #333333">);</span>
+		Result<span style="color: #333333">&lt;</span>Integer<span style="color: #333333">&gt;</span> a2 <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Result<span style="color: #333333">&lt;</span>Integer<span style="color: #333333">&gt;(</span><span style="color: #0000DD; font-weight: bold">3</span><span style="color: #333333">);</span>
+
+		System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;Answer is &quot;</span> <span style="color: #333333">+</span> a1<span style="color: #333333">.</span><span style="color: #0000CC">getObject</span><span style="color: #333333">()</span> <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;,&quot;</span> <span style="color: #333333">+</span> a2<span style="color: #333333">.</span><span style="color: #0000CC">getObject</span><span style="color: #333333">());</span>
+	<span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Result</span><span style="color: #333333">&lt;</span>T<span style="color: #333333">&gt;</span> <span style="color: #333333">{</span>
+	<span style="color: #008800; font-weight: bold">private</span> <span style="color: #333333">[</span> <span style="color: #333333">]</span> object<span style="color: #333333">;</span>
+	<span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">Result</span><span style="color: #333333">([</span> <span style="color: #333333">]</span> object<span style="color: #333333">){</span>
+		<span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">object</span> <span style="color: #333333">=</span> object<span style="color: #333333">;</span>
+	<span style="color: #333333">}</span>
+
+	<span style="color: #008800; font-weight: bold">public</span> <span style="color: #333333">[</span> <span style="color: #333333">]</span> getObject<span style="color: #333333">(){</span>
+		<span style="color: #008800; font-weight: bold">return</span> object<span style="color: #333333">;</span>
+	<span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+</pre></div>
+
+
+      1) chapter03 패키지안에 q1클래스를 만들고 "Answer is AAA,3" 이라고 출력되도록 아래 Result 클래스의 빈칸 3군데를 채우시오.<br>
+      2) 1번을 완성하였다면 T를 K로 바꾸고 실행시키시오. 프로그램이 실행되는가?<br>
+    </div>
+  </div>
+</div>

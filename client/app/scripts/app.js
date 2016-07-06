@@ -38,22 +38,71 @@ angular
           requireLogin: false
         }
       })
-      //코딩연습 메뉴--------------------------------------------------
-      .state('coding', {
-        url: '/coding',
-        templateUrl: 'views/coding.html',
-        controller: 'CodingCtrl',
-        controllerAs: 'coding',
-        data: {
-          requireLogin: false
-        }
-      })
     //자바 메뉴--------------------------------------------------
     .state('java', {
       url: '/java',
-      templateUrl: 'views/java.html',
-      controller: 'JavaCtrl',
-      controllerAs: 'java',
+      abstract: true,
+      templateUrl: 'views/java/index.html',
+      data: {
+        requireLogin: false
+      }
+    })
+    .state('java.main', {
+      url: '',
+      templateUrl: 'views/java/main.html',
+      controller: function($scope) {
+
+      },
+      data: {
+        requireLogin: false
+      }
+    })
+    .state('java.anonymous', {
+      url: '/anonymous',
+      templateUrl: 'views/java/anonymous.html',
+      controller: function($scope) {
+
+      },
+      data: {
+        requireLogin: false
+      }
+    })
+    .state('java.collection', {
+      url: '/collection',
+      templateUrl: 'views/java/collection.html',
+      controller: function($scope) {
+
+      },
+      data: {
+        requireLogin: false
+      }
+    })
+    .state('java.generic', {
+      url: '/generic',
+      templateUrl: 'views/java/generic.html',
+      controller: function($scope) {
+
+      },
+      data: {
+        requireLogin: false
+      }
+    })
+    .state('java.thread', {
+      url: '/thread',
+      templateUrl: 'views/java/thread.html',
+      controller: function($scope) {
+
+      },
+      data: {
+        requireLogin: false
+      }
+    })
+    //자바스크립트 메뉴--------------------------------------------------
+    .state('javascript', {
+      url: '/javascript',
+      templateUrl: 'views/javascript.html',
+      controller: 'JavascriptCtrl',
+      controllerAs: 'javascript',
       data: {
         requireLogin: false
       }
