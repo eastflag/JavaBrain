@@ -1,3 +1,8 @@
+/*나눔고딕
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);*/
+/*제주고딕*/
+@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -5,24 +10,15 @@
   padding: 0.2em 0;
 }
 
-/*@font-face {
-  font-family:'NanumGothic';
-  src: url('/resources/images/NanumGothic.eot');
-  src: url('/resources/images/NanumGothic.eot?#iefix') format('embedded-opentype'),
-  url('/resources/images/NanumGothic.woff') format('woff'),
-  url('/resources/images/NanumGothic.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}*/
-
 * {
   margin: 0;
   padding: 0;
 }
 
 body {
-/*  font-family: 'NanumGothic',dotum,"돋음",sans-serif;*/
-  font-size: 14px;
+  /*font-family: 'Nanum Gothic', serif;*/
+  font-family: 'Jeju Gothic', serif;
+  font-size: 16px;
   line-height: 1.8em;
 }
 
