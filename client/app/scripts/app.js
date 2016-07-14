@@ -79,7 +79,7 @@ angular
     })
     .state('java.generic', {
       url: '/generic',
-      templateUrl: 'views/java/generic.html',
+      templateUrl: 'views/java/1.html',
       controller: function($scope) {
 
       },
@@ -110,9 +110,95 @@ angular
     //안드로이드 메뉴--------------------------------------------------
     .state('android', {
       url: '/android',
-      templateUrl: 'views/android.html',
-      controller: 'AndroidCtrl',
-      controllerAs: 'android',
+      abstract: true,
+      templateUrl: 'views/android/index.html',
+    })
+    .state('android.main', {
+      url: '',
+      templateUrl: 'views/android/main.html',
+      controller: function($scope) {
+
+      },
+      data: {
+        requireLogin: false
+      }
+    })
+    .state('android.1', {
+      url: '/1',
+      templateUrl: 'views/android/1.html',
+      controller: function($scope) {
+
+      },
+      data: {
+        requireLogin: false
+      }
+    })
+    .state('android.2', {
+      url: '/2',
+      templateUrl: 'views/android/2.html',
+      controller: function($scope) {
+
+      },
+      data: {
+        requireLogin: false
+      }
+    })
+    .state('android.3', {
+      url: '/3',
+      templateUrl: 'views/android/3.html',
+      controller: function($scope) {
+
+      },
+      data: {
+        requireLogin: false
+      }
+    })
+    .state('android.4', {
+      url: '/4',
+      templateUrl: 'views/android/4.html',
+      controller: function($scope) {
+
+      },
+      data: {
+        requireLogin: false
+      }
+    })
+    .state('android.5', {
+      url: '/5',
+      templateUrl: 'views/android/5.html',
+      controller: function($scope) {
+
+      },
+      data: {
+        requireLogin: false
+      }
+    })
+    .state('android.6', {
+      url: '/6',
+      templateUrl: 'views/android/6.html',
+      controller: function($scope) {
+
+      },
+      data: {
+        requireLogin: false
+      }
+    })
+    .state('android.7', {
+      url: '/7',
+      templateUrl: 'views/android/7.html',
+      controller: function($scope) {
+
+      },
+      data: {
+        requireLogin: false
+      }
+    })
+    .state('android.8', {
+      url: '/8',
+      templateUrl: 'views/android/8.html',
+      controller: function($scope) {
+
+      },
       data: {
         requireLogin: false
       }
