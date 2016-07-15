@@ -79,7 +79,7 @@ angular
     })
     .state('java.generic', {
       url: '/generic',
-      templateUrl: 'views/java/1.html',
+      templateUrl: 'views/java/generic.html',
       controller: function($scope) {
 
       },

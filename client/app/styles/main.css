@@ -58,6 +58,9 @@ body {
   transform: scaleX(1);
   opacity: 1;
 }
+ul {
+  list-style: none;
+}
 /* slide animation end---------------------------------------------*/
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
