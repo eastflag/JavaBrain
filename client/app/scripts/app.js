@@ -206,9 +206,15 @@ angular
     //게임 메뉴--------------------------------------------------
     .state('game', {
       url: '/game',
-      templateUrl: 'views/game.html',
-      controller: 'GameCtrl',
-      controllerAs: 'game',
+      abstract: true,
+      templateUrl: 'views/game/index.html'
+    })
+    .state('game.main', {
+      url: '',
+      templateUrl: 'views/game/main.html',
+      controller: function($scope) {
+
+      },
       data: {
         requireLogin: false
       }
