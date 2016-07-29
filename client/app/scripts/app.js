@@ -100,9 +100,15 @@ angular
     //자바스크립트 메뉴--------------------------------------------------
     .state('javascript', {
       url: '/javascript',
-      templateUrl: 'views/javascript.html',
-      controller: 'JavascriptCtrl',
-      controllerAs: 'javascript',
+      templateUrl: 'views/javascript/index.html',
+      abstract: true
+    })
+    .state('javascript.main', {
+      url: '',
+      templateUrl: 'views/javascript/main.html',
+      controller: function($scope) {
+
+      },
       data: {
         requireLogin: false
       }
