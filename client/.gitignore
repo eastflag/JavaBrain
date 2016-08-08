@@ -5,3 +5,5 @@
 /bower_components
 /.idea
 /app/download
+/gulp
+/e2e
