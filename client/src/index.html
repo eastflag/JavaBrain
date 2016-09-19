@@ -22,49 +22,56 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Material+Icons'>
   </head>
-  <body>
+  <body ng-controller="NavigationCtrl as navi" layout="column" ng-cloak>
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="header">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-
-            <a class="navbar-brand" ui-shref="home">JavaBrain</a>
-          </div>
-
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
-            <ul class="nav navbar-nav">
-              <li ui-sref-active="active"><a ui-sref="home">홈</a></li>
-              <li ui-sref-active="active"><a ui-sref="java.main">자바</a></li>
-              <li ui-sref-active="active"><a ui-sref="oop.main">OOP</a></li>
-              <li ui-sref-active="active"><a ui-sref="javascript.main">자바스크립트</a></li>
-              <li ui-sref-active="active"><a ui-sref="android.main">안드로이드</a></li>
-              <li ui-sref-active="active"><a ui-sref="game.main">게임</a></li>
-            </ul>
-          </div>
-        </div>
+    <md-toolbar layout="row" layout-align="center center" style="min-height:50px;">
+      <md-button class="menu" hide-gt-md ng-click="navi.toggleList()" aria-label="Show Side Menu">
+        <md-icon md-svg-icon="menu"></md-icon>
+      </md-button>
+      <div class="brand" ui-sref="home" layout="row" layout-align="center center">
+        <img src="/assets/images/brain.png" alt="Java Brain" style="width:25px;height:25px;">
+        <span>Java Brain</span>
       </div>
-    </div>
+      <section id="top_menu" layout="row" flex layout-align="end center">
+        <md-button ui-sref-active="active" class="md-raised md-primary" ui-sref="java.main" layout="row" layout-align="center center">
+          <md-icon>free_breakfast</md-icon> 자바
+        </md-button>
+        <md-button ui-sref-active="active" class="md-raised md-primary" ui-sref="oop.main" layout="row" layout-align="center center">
+          <md-icon>voicemail</md-icon> OOP
+        </md-button>
+        <md-button ui-sref-active="active" class="md-raised md-primary" ui-sref="javascript.main" layout="row" layout-align="center center">
+          <md-icon>description</md-icon>  자바스크립트
+        </md-button>
+        <md-button ui-sref-active="active" class="md-raised md-primary" ui-sref="android.main" layout="row" layout-align="center center">
+          <md-icon>android</md-icon> 안드로이드
+        </md-button>
+        <md-button ui-sref-active="active" class="md-raised md-primary" ui-sref="game.main" layout="row" layout-align="center center">
+          <md-icon>gamepad</md-icon> 게임
+        </md-button>
 
-    <div class="container">
+        <!-- 로그인 로그아웃 -->
+        <md-button ng-show="!$parent.mAuth"
+                   class="md-raised md-primary" ng-click="navi.showLogin()" layout="row" layout-align="center center">
+          <md-icon>input</md-icon> 로그인
+        </md-button>
+        <md-button ng-show="$parent.mAuth"
+                   class="md-raised md-primary" ng-click="navi.logOut()" layout="row" layout-align="center center">
+          <md-icon>power_settings_new</md-icon> 로그아웃
+        </md-button>
+      </section>
+    </md-toolbar>
+
+    <md-content flex id="content" style="padding:5px;">
       <div ui-view class="slide"></div>
-    </div>
+    </md-content>
 
-    <div class="footer">
-      <div class="container">
-        <p><i class="material-icons" style="font-size:12px;">favorite</i>CopyRight 2013 powered by eastflag</p>
-      </div>
+    <div class="footer" layout="column" layout-align="center center">
+      <p style="margin: 0;">
+        CopyRight 2013 powered by eastflag. e-mail:eastflag@gmail.com. kakao:eastflag
+      </p>
     </div>
 
 

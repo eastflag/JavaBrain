@@ -19,7 +19,14 @@ angular
     'ngMaterial',
     'ui.codemirror' //https://github.com/angular-ui/ui-codemirror
   ])
-  .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
+  .config(function ($mdThemingProvider, $mdIconProvider, $stateProvider, $urlRouterProvider, $httpProvider) {
+    $mdIconProvider
+      .icon("menu", "/assets/svg/menu.svg"        , 24);
+
+    $mdThemingProvider.theme('default')
+      .primaryPalette('blue-grey')
+      .accentPalette('red');
+    
     $stateProvider
       .state('home', {
         url: '/',
