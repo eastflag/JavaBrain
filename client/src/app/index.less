@@ -10,6 +10,9 @@
 /*제주고딕*/
 @import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
 
+/* 제주고딕이 한자를 지원하지 않기 때문에 한자 폰트 추가*/
+@import url(http://fonts.googleapis.com/earlyaccess/cwtexhei.css);
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -17,19 +20,20 @@
   padding: 0.2em 0;
 }
 
-* {
+html, body {
+  /*font-family: 'Nanum Gothic', serif;*/
+  font-family: 'cwTeXHei', 'Jeju Gothic', serif;
+  font-size: 14px;
+  height: 100%;
+  line-height: 1.8em;
   margin: 0;
   padding: 0;
 }
 
-body {  /*font-family: 'Nanum Gothic', serif;*/
-  font-family: 'Jeju Gothic', serif;
-  font-size: 16px;
-  line-height: 1.8em;
-}
-
 ul.side-menu {
   list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 ul.side-menu li a {
   display: block;

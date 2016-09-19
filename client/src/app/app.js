@@ -16,7 +16,8 @@ angular
     'ngResource',
     'ui.router',
     'ngSanitize',
-    'ngMaterial'
+    'ngMaterial',
+    'ui.codemirror' //https://github.com/angular-ui/ui-codemirror
   ])
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     $stateProvider
@@ -88,6 +89,44 @@ angular
         requireLogin: false
       }
     })
+    //OOP 메뉴--------------------------------------------------
+      .state('oop', {
+        url: '/oop',
+        abstract: true,
+        templateUrl: 'app/oop/index.html',
+        data: {
+          requireLogin: false
+        }
+      })
+      .state('oop.main', {
+        url: '',
+        templateUrl: 'app/oop/main.html',
+        controller: function($scope) {
+
+        },
+        data: {
+          requireLogin: false
+        }
+      })
+      .state('oop.di', {
+        url: '/di',
+        templateUrl: 'app/oop/di.html',
+        controller: function($scope) {
+
+        },
+        data: {
+          requireLogin: false
+        }
+      })
+      .state('oop.observer', {
+        url: '/observer',
+        templateUrl: 'app/oop/observer.html',
+        controller: 'ObserverCtrl',
+        controllerAs: 'observer',
+        data: {
+          requireLogin: false
+        }
+      })
     //자바스크립트 메뉴--------------------------------------------------
     .state('javascript', {
       url: '/javascript',
