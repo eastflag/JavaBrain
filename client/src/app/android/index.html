@@ -1,25 +1,25 @@
-<div class="row">
-  <div class="col-md-2">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        목차
-      </div>
-      <div class="panel-body side-menu" style="padding: 0">
-        <ul class="side-menu">
-          <li ui-sref-active="active"><a ui-sref="android.main">개요</a></li>
-          <li ui-sref-active="active"><a ui-sref="android.1">1주차</a></li>
-          <li ui-sref-active="active"><a ui-sref="android.2">2주차</a></li>
-          <li ui-sref-active="active"><a ui-sref="android.3">3주차</a></li>
-          <li ui-sref-active="active"><a ui-sref="android.4">4주차</a></li>
-          <li ui-sref-active="active"><a ui-sref="android.5">5주차</a></li>
-          <li ui-sref-active="active"><a ui-sref="android.6">6주차</a></li>
-          <li ui-sref-active="active"><a ui-sref="android.7">7주차</a></li>
-          <li ui-sref-active="active"><a ui-sref="android.8">8주차</a></li>
-        </ul>
-      </div>
+<div layout="row" layout-xs="column">
+  <div class="panel panel-info" flex-gt-xs="20" flex-xs="100">
+    <div class="panel-heading">
+      목차
+    </div>
+    <div class="panel-body side-menu" style="padding: 0">
+      <ul class="side-menu">
+        <li ui-sref-active="active"><a ui-sref="android.main">개요</a></li>
+        <li ui-sref-active="active"><a ui-sref="android.1">1주차</a></li>
+        <li ui-sref-active="active"><a ui-sref="android.2">2주차</a></li>
+        <li ui-sref-active="active"><a ui-sref="android.3">3주차</a></li>
+        <li ui-sref-active="active"><a ui-sref="android.4">4주차</a></li>
+        <li ui-sref-active="active"><a ui-sref="android.5">5주차</a></li>
+        <li ui-sref-active="active"><a ui-sref="android.6">6주차</a></li>
+        <li ui-sref-active="active"><a ui-sref="android.7">7주차</a></li>
+        <li ui-sref-active="active"><a ui-sref="android.8">8주차</a></li>
+      </ul>
     </div>
   </div>
-  <div class="col-md-10">
-    <div ui-view class="slide"></div>
+
+  <div style="width:1px; height: 1px;margin: 3px;" />
+
+  <div flex="80" flex-xs="100" ui-view class="slide">
   </div>
 </div>

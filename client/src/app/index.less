@@ -30,6 +30,23 @@ html, body {
   padding: 0;
 }
 
+/*BootStrap 오버라이딩 start---*/
+.panel {
+  margin-bottom: 0;
+}
+.panel-footer {
+  padding: 0;
+  text-align: center;
+}
+.pagination {
+  margin: 10px 0 0 0;
+}
+/*BootStrap 오버라이딩 end---*/
+
+.brand {
+  cursor: pointer;
+}
+
 #top_menu {
   md-icon {
     margin: 0;
@@ -46,19 +63,57 @@ html, body {
   }
 }
 
+.menu {
+  background-color: transparent;
+  border: none;
+  height: 38px;
+  min-width: 35px;
+  margin: 0;
+  padding: 0;
+}
+
+#right_menu {
+  width: 200px;
+  .menu-item {
+    width: 100%;
+    text-align: left !important;
+    margin: 0;
+    padding: 6px 0 6px 15px;
+    border-bottom: solid #cccccc 1px;
+    overflow: visible;
+    md-icon {
+      margin-right: 10px;
+      transition: transform 0.5s;
+    }
+  }
+  .menu-item:hover {
+    background: #e5e5e5;
+    border-left: solid 5px orange;
+  }
+  .menu-item:hover md-icon {
+    transform: rotate(360deg);
+  }
+  .active {
+    background: #a5a5a5;
+    border-left: solid 5px orange;
+  }
+}
+
 ul.side-menu {
   list-style-type: none;
   margin: 0;
   padding: 0;
-}
-ul.side-menu li a {
-  display: block;
-  color: #777;
-  padding: 8px 16px;
-  text-decoration: none;
-}
-ul.side-menu li.active {
-  background-color: #e7e7e7;
+  li {
+    a {
+      display: block;
+      color: #777;
+      padding: 8px 16px;
+      text-decoration: none;
+    }
+  }
+  li.active {
+    background-color: #e7e7e7;
+  }
 }
 
 /* slide animation start---------------------------------------------*/

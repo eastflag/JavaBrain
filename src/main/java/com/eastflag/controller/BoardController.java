@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+//나는 의사다 서비스를 위한 api
 @RestController
 @RequestMapping(value="/api", method={RequestMethod.GET, RequestMethod.POST})
 public class BoardController {
