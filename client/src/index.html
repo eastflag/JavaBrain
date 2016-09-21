@@ -65,8 +65,8 @@
     </md-toolbar>
 
     <div flex layout="row">
-      <md-content flex style="padding:3px;">
-        <div ui-view class="slide"></div>
+      <md-content flex style="padding:3px;" ui-view class="slide">
+        <!--<div ui-view class="slide"></div>-->
       </md-content>
 
       <md-sidenav id="right_menu" class="md-sidenav-right" ng-click="navi.closeSideNav()" md-component-id="right">
@@ -93,7 +93,6 @@
         <md-button ng-show="$parent.mAuth" class="md-raised md-primary menu-item" ng-click="navi.logOut()" >
           <md-icon>power_settings_new</md-icon> 로그아웃
         </md-button>
-        </section>
       </md-sidenav>
     </div>
 
