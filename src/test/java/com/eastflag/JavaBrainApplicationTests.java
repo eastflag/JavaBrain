@@ -1,6 +1,7 @@
 package com.eastflag;
 
 import com.eastflag.service.ApiService;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ public class JavaBrainApplicationTests {
 	@Autowired
 	private ApiService apiService;
 
+	@Ignore
 	@Test
 	public void contextLoads() {
 		apiService.addAnswer(null);
