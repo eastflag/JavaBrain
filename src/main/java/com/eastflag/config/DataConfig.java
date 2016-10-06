@@ -66,9 +66,10 @@ public class DataConfig {
 	public SqlSessionFactory sqlSessionFactory() throws Exception {
 		SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean();
 		sessionFactoryBean.setDataSource(dataSource());
-		sessionFactoryBean.setTypeAliasesPackage("com.eastflag.domain");
-		//sessionFactoryBean.setConfigLocation(applicationContext.getResource("classpath:mybatis/mybatis-config.xml"));
-		sessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:mybatis/mapper/**/*.xml"));
+		//gradle build로 컴파일 후 실행시에 typeAliases 가 매핑되지 않아서 config를 사용함.
+		//sessionFactoryBean.setTypeAliasesPackage("com.center.domain");
+		sessionFactoryBean.setConfigLocation(applicationContext.getResource("classpath:mybatis/mybatis-config.xml"));
+		//sessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:mybatis/mapper/**/*.xml"));
 		return sessionFactoryBean.getObject();
 	}
 
