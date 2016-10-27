@@ -26,7 +26,7 @@ angular
     $mdThemingProvider.theme('default')
       .primaryPalette('blue-grey')
       .accentPalette('red');
-    
+
     $stateProvider
       .state('home', {
         url: '/',
@@ -265,12 +265,16 @@ angular
     $urlRouterProvider.otherwise('/');
   })
 
-  .run(function ($rootScope) {
+  .run(function ($rootScope, $window) {
+    //구글 analytics 초기화화
+    $window.ga('create', 'UA-75723168-1');
+
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
 
     });
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
-
+      //구글 analytics page 설정
+      $window.ga('send', 'pageview', {page: toState.url});
     });
     $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error){
 
