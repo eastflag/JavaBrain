@@ -24,7 +24,7 @@ angular
       .icon("menu", "/assets/svg/menu.svg"        , 24);
 
     $mdThemingProvider.theme('default')
-      .primaryPalette('blue-grey')
+      .primaryPalette('blue')
       .accentPalette('red');
 
     $stateProvider
