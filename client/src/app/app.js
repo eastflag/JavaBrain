@@ -60,7 +60,13 @@ angular
       url: '/anonymous',
       templateUrl: 'app/java/anonymous.html',
       controller: function($scope) {
-
+        $scope.editorOptions = {
+          lineWrapping : true,
+          lineNumbers: true,
+          matchBrackets: true,
+          mode: 'text/x-java'
+        };
+        console.log('anonymous');
       },
       data: {
         requireLogin: false

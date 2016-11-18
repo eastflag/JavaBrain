@@ -10,85 +10,124 @@
       <dd><a href="http://happystory.tistory.com/64">참고 3</a></dd>
     </dl>
 
-<!--    <div>
-      Anonymous 클래스 문법 이해<br>
-      Anonymous 란 명칭은 왜 붙은것일까?<br>
-      Anonymous를 컴파일하게 되면 결과는 무멋이 생성되는가?<br><br>
-    </div>-->
+    <hr>
 
-    <h3>* 실습 1(자바프로젝트)  ClickListener 인터페이스를 3가지 방법으로 구현한다.</h3>
-    <div>
-      아래 q1) q2) q3) 번을 각각 따로 프로그램을 작성하여야 하며 각각의 출력 결과는 clicked가 출력되어야 한다<br>
-      chapter01.listener 패키지를 만들고 ClickListener 인터페이스를 생성하고<br>
-      chapter01 패키지에는 아래의 3가지 자바 화일 생성 q1.java, q2.java, q3.java 하시오.<br>
-      <br>
-      <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">package</span> chapter01<span style="color: #333333">.</span><span style="color: #0000CC">listener</span><span style="color: #333333">;</span>
+    <h4>* ClickListener 인터페이스 구현 및 사용하는 방법 4가지</h4>
+    <dl>
+      <dt>인터페이스 생성</dt>
+      <dd>아래를 보고 동일하게 패키지와 인터페이스 생성</dd>
+      <dd>
+        <ui-codemirror ui-codemirror-opts="editorOptions">
+package com.eastflag.listener;
 
-<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">interface</span> <span style="color: #BB0066; font-weight: bold">ClickListener</span> <span style="color: #333333">{</span>
-	<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onClick</span><span style="color: #333333">();</span>
-<span style="color: #333333">}</span>
-</pre></div>
-      <br>
-      <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">package</span> chapter01<span style="color: #333333">;</span>
+public interface ClickListener {
+	public void onClick();
+}
+        </ui-codemirror>
+      </dd>
+    </dl>
+    <dl>
+      <dt>1. 인터페이스를 implements하는 클래스 생성</dt>
+      <dd>
+        <ui-codemirror ui-codemirror-opts="editorOptions" style="font-family: 'Jeju Gothic';">
+package com.eastflag.anonymous;
 
-<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">chapter01.listener.ClickListener</span><span style="color: #333333">;</span>
+import com.eastflag.listener.ClickListener;
 
-<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">q1</span> <span style="color: #333333">{</span>
+public class q1 {
 
-	<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">main</span><span style="color: #333333">(</span>String<span style="color: #333333">[]</span> args<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+	public static void main(String[] args) {
+		/*
+		 * 아래 클래스 생성후 이 클래스의 onClick()함수 호출
+		 */
+	}
 
-	<span style="color: #333333">}</span>
-<span style="color: #333333">}</span>
-</pre></div>
+}
 
-      q1). ClickListener 인터페이스를구현하는 MyClick이라는 클래스를 q1 클래스 외부에 만들고<br>
-      &nbsp;&nbsp;onClick함수를 오버라이딩하여  System.out.println("Clicked") 추가 <br>
-      &nbsp;&nbsp;main 함수에서 MyClick 클래스의 인스턴스를 생성하고 onClick 함수를 호출하여 메시지를 출력하기<br>
-      &nbsp;&nbsp;실행하여 "Clicked"가 출력되면 성공<br>
+/*
+ *  ClickListener 인터페이스를 implements하는 클래스 생성
+ *  onClick()함수는 "Clicked"라는 스트링을 출력하도록 구현한다.
+ */
+        </ui-codemirror>
+      </dd>
+    </dl>
 
-      <br>
+    <dl>
+      <dt>2. Anonymous class 문법으로 생성하고 onClick 호출</dt>
+      <dd>
+        <ui-codemirror ui-codemirror-opts="editorOptions" style="font-family: 'Jeju Gothic';">
+package com.eastflag.anonymous;
 
-      <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">package</span> chapter01<span style="color: #333333">;</span>
+import com.eastflag.listener.ClickListener;
 
-<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">chapter01.listener.ClickListener</span><span style="color: #333333">;</span>
+public class q2 {
 
-<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">q2</span> <span style="color: #333333">{</span>
+    public static void main(String[] args) {
+        /*
+         * Anonymous class 문법으로 인스턴스 생성후
+         * onClick()을 호출하여 "clicked"를 출력되게 하라.
+         */
+    }
 
-	<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">main</span><span style="color: #333333">(</span>String<span style="color: #333333">[]</span> args<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+}
+        </ui-codemirror>
+      </dd>
+    </dl>
 
-	<span style="color: #333333">}</span>
-<span style="color: #333333">}</span>
-</pre></div>
-      q2). Anonymous Class로 구현하기<br>
-      &nbsp;&nbsp;메인함수에서 ClickLister 인터페이스를 Anonymous class 문법으로 구현하고,<br>
-      &nbsp;&nbsp;그리고, 구현된 익명클래스의 onClick함수를 호출하여 "Clicked" 가 호출되도록 하라.<br>
-      <br>
+    <dl>
+      <dt>3. Anonymous class 문법으로 생성후 아래 함수 호출</dt>
+      <dd>
+        <ui-codemirror ui-codemirror-opts="editorOptions" style="font-family: 'Jeju Gothic';">
+package com.eastflag.anonymous;
 
-      <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">package</span> chapter01<span style="color: #333333">;</span>
+import com.eastflag.listener.ClickListener;
 
-<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">chapter01.listener.ClickListener</span><span style="color: #333333">;</span>
+public class q3 {
+    public static void main(String[] args) {
+    	/*
+    	 * 익명클래스로 인스턴스 생성후
+    	 * 아래 setClickListener 함수를 호출하여 "clicked" 출력하도록 하시오.
+    	 */
+    }
 
-<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">q3</span> <span style="color: #333333">{</span>
-	<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">main</span><span style="color: #333333">(</span>String<span style="color: #333333">[]</span> args<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+    public static void setClickListener(ClickListener l) {
+        l.onClick();
+    }
 
-	<span style="color: #333333">}</span>
+}
+        </ui-codemirror>
+      </dd>
+    </dl>
 
-	<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">setClickListener</span><span style="color: #333333">(</span>ClickListener l<span style="color: #333333">)</span> <span style="color: #333333">{</span>
-		l<span style="color: #333333">.</span><span style="color: #0000CC">onClick</span><span style="color: #333333">();</span>
-	<span style="color: #333333">}</span>
-<span style="color: #333333">}</span>
-</pre></div>
-      q3). q3 클래스에 setClickListener 함수를 추가하였다.<br>
-      q2번에서 만든 익명클래스를 이용하여 이 함수를 호출하여 "Clicked"가 호출되도록 하라.<br>
-      <br>
+    <dl>
+      <dt>4. 람다식으로 인스턴스를 생성</dt>
+      <dd>
+        <ui-codemirror ui-codemirror-opts="editorOptions" style="font-family: 'Jeju Gothic';">
+package com.eastflag.anonymous;
 
-      <h3>Q&A</h3>
-      Q1) 위 q2번의 코드를 작성후 컴파일하면 .class 화일이 두개가 생성된다. 각각 무엇인가?<br>
-      Q2) q2번에서 생성된 .class 화일을 볼때 익명클래스란 이름은 어디서 유래가 된것일까?<br>
-      Q3) q3번에서 추가한 함수의 파라메터 타입이 인터페이스이다. 인터페이스는 추상화된 타입이라 객체를 만들수없는데,<br>
-      함수의 파라메터 타입이 인터페이스라는것은 무엇을 넣으라는 것인가?<br>
-      Q4) 익명클래스는 인스턴스인가? 클래스인가?<br>
-      Q5) q3번에서 추가한 함수앞에 static이 붙어있다. 이 static을 제거하면 에러가 발생하는데, 왜 에러가 발생하는가?<br>
-    </div>
+import com.eastflag.listener.ClickListener;
+
+public class q4 {
+
+	public static void main(String[] args) {
+		/*
+		 * 람다식으로 인스턴스 생성후
+		 * onClick() 호출하여 "clicked" 출력
+		 */
+	}
+
+}
+        </ui-codemirror>
+      </dd>
+    </dl>
+
+    <h4>* Q&A</h4>
+    <dl>
+      <dt>5. 위 q2번의 코드를 작성후 컴파일하면 .class 화일이 두개가 생성된다. 각각 무엇인가?</dt>
+      <dt>6. q2번에서 생성된 .class 화일을 볼때 익명클래스란 이름은 어디서 유래가 된것일까?</dt>
+      <dt>7. q3번에서 추가한 함수의 파라메터 타입이 인터페이스이다. 인터페이스는 추상화된 타입이라 객체를 만들수없는데,<br>
+        함수의 파라메터 타입이 인터페이스라는것은 무엇을 넣으라는 것인가?</dt>
+      <dt>8. q3번에서 추가한 함수앞에 static이 붙어있다. 이 static을 제거하면 에러가 발생하는데, 왜 에러가 발생하는가?</dt>
+    </dl>
   </div>
 </div>
