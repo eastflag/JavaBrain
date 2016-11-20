@@ -13,12 +13,12 @@ gulp.task('partials', function () {
     path.join(conf.paths.src, '/app/**/*.html'),
     path.join(conf.paths.tmp, '/serve/app/**/*.html')
   ])
-    .pipe($.htmlmin({
+/*    .pipe($.htmlmin({
       removeEmptyAttributes: true,
       removeAttributeQuotes: true,
       collapseBooleanAttributes: true,
-      collapseWhitespace: true
-    }))
+      collapseWhitespace: false
+    }))*/
     .pipe($.angularTemplatecache('templateCacheHtml.js', {
       module: 'clientApp',
       root: 'app'
@@ -42,11 +42,11 @@ gulp.task('html', ['inject', 'partials'], function () {
     .pipe($.inject(partialsInjectFile, partialsInjectOptions))
     .pipe($.useref())
     .pipe(jsFilter)
-    .pipe($.sourcemaps.init())
+    //.pipe($.sourcemaps.init())
     .pipe($.ngAnnotate())
     .pipe($.uglify({ preserveComments: $.uglifySaveLicense })).on('error', conf.errorHandler('Uglify'))
     .pipe($.rev())
-    .pipe($.sourcemaps.write('maps'))
+    //.pipe($.sourcemaps.write('maps'))
     .pipe(jsFilter.restore)
     .pipe(cssFilter)
     // .pipe($.sourcemaps.init())
@@ -57,12 +57,12 @@ gulp.task('html', ['inject', 'partials'], function () {
     .pipe(cssFilter.restore)
     .pipe($.revReplace())
     .pipe(htmlFilter)
-    .pipe($.htmlmin({
+/*    .pipe($.htmlmin({
       removeEmptyAttributes: true,
       removeAttributeQuotes: true,
       collapseBooleanAttributes: true,
       collapseWhitespace: true
-    }))
+    }))*/
     .pipe(htmlFilter.restore)
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')))
     .pipe($.size({ title: path.join(conf.paths.dist, '/'), showFiles: true }));

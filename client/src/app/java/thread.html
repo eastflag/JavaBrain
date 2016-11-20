@@ -3,73 +3,60 @@
     Thread
   </div>
   <div class="panel-body">
-    <h3>* 학습 자료</h3>
-    <div>
-      <a href="http://blog.naver.com/robinnw/80211544638">참고 사이트1</a><br>
-    </div>
-    <br>
-    <h3>* 학습목표</h3>
-    <div>
-      쓰레드 생성 방법 2가지<br>
-      쓰레드 실행 방법<br>
-      병렬 처리와 병행처리(concurrent) 이해<br>
-    </div>
-    <br>
-    <h3>* 실습 1 : hello 문자를 0.3초 간격으로 프린트하기</h3>
-    <div>
+    <h4>* 학습 자료</h4>
+    <dl>
+      <dd><a href="http://blog.naver.com/robinnw/80211544638">참고 사이트1</a></dd>
+    </dl>
 
-      <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">package</span> chapter04<span style="color: #333333">;</span>
+    <hr>
 
-<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">q1</span> <span style="color: #333333">{</span>
-	<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #008800; font-weight: bold">final</span> String HELLO <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;hello&quot;</span><span style="color: #333333">;</span>
+    <h4>* hello 문자를 0.3초 간격으로 프린트한다.</h4>
 
-	<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">main</span><span style="color: #333333">(</span>String<span style="color: #333333">[]</span> args<span style="color: #333333">)</span> <span style="color: #333333">{</span>
-		<span style="color: #888888">//2) 쓰레드 시작</span>
+    <dl>
+      <dt>1. Thread를 상속한 클래스를 생성</dt>
+      <dd>q1에 선언된 HELLO 문자를 0.3초 간격으로 프린트 하는 로직 작성</dd>
+      <dd>문자를 하나씩 300ms sleep을 주면서 루프를 돌린다.</dd>
+      <dt>2. 메인함수에서 쓰레드 시작한다.</dt>
+      <dd>출력결과는 finishhello 가 출력되어야 한다.</dd>
+      <dd>
+        <ui-codemirror ui-codemirror-opts="editorOptions">
+package com.eastflag.thread;
 
+public class q1 {
+	public static final String HELLO = "hello";
 
-		System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">print</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;finish&quot;</span><span style="color: #333333">);</span>
-	<span style="color: #333333">}</span>
-<span style="color: #333333">}</span>
-
-<span style="color: #888888">//1) Thread를 상속한 클래스 생성</span>
-<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">MyThread</span> <span style="color: #008800; font-weight: bold">extends</span> Thread <span style="color: #333333">{</span>
-
-<span style="color: #333333">}</span>
-</pre></div>
-
-      q1 문제 : chapter04 패키지안에 q1클래스를 만드시오.<br>
-      1) Thread를 상속한 MyThread를 생성하고 run 메서드를 오버로딩하시오.<br>
-      2) run 메서드에 0.3초 간격으로 'h', 'e', 'l', 'l', 'o' 를 프린트하도록 코딩하시오.<br>
-      (String 클래스의 subString함수, Thread 클래스의 sleep 함수 이용)<br>
-      3) main 함수에서 MyThread 클래스의 인스턴스를 생성하고 run 메서드를 호출하시오.<br>
-      'hellofinish' 라고 출력이 되어야 한다<br>
-      4) 3번과 동일하지만 이번에는 run이 아니라 start 메서드를 호출하시오.<br>
-      'finishhello' 라고 출력이 되어야 한다<br>
-      <br>
-      <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">package</span> chapter04<span style="color: #333333">;</span>
-
-<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">q2</span> <span style="color: #333333">{</span>
-	<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #008800; font-weight: bold">final</span> String HELLO <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;hello&quot;</span><span style="color: #333333">;</span>
-
-	<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">main</span><span style="color: #333333">(</span>String<span style="color: #333333">[]</span> args<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+	public static void main(String[] args) {
+		// 2. 쓰레드 시작
 
 
-		System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">print</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;finish&quot;</span><span style="color: #333333">);</span>
-	<span style="color: #333333">}</span>
-<span style="color: #333333">}</span>
-</pre></div>
+		System.out.print("finish");
+	}
+}
+
+//1. Thread를 상속한 클래스를 생성후
+//   0.3초 간격으로 hello를 프린트하는 로직 작성
+
+        </ui-codemirror>
+      </dd>
+      <dt>3. 만일 메인함수에서 쓰레드의 run 메서드를 호출하면 출력결과는 finishhello가 된다. 그 이유는 무엇인가?</dt>
+      <dt>4. Thread를 상속하지 말고, Thread(Runnable r)을 사용하여 구현하여 보시오.</dt>
+      <dd>
+        <ui-codemirror ui-codemirror-opts="editorOptions">
+package com.eastflag.thread;
+
+public class q2 {
+	public static final String HELLO = "hello";
+
+	public static void main(String[] args) {
+
+		//4. Thread를 상속하지 말고, Thread(Runnable r)을 사용하여 구현하여 보시오.
 
 
-      q2 문제 : chapter04 패키지안에 q2 클래스를 만드시오.<br>
-      1) MyThred 클래스를 만들지 않고 Thread 클래스의 생성자가 Runnable 인터페이스인 Thread(Runnable r) 을 사용하여 Runnable 인터페이스를 implements 하여 생성하시오.<br>
-      (출력결과는 q1의 4번과 동일하여야 한다)<br>
-      <br>
-
-    </div>
-
-    <h3>* Q&A</h3>
-    <div>
-      Q1) q1의 3)번에서는 'hellofinish'라고 출력되고 4번의 start함수를 호출할때는 'finishhello'라고 출력되는 이유를 설명하시오. run 함수와 start의 함수의 차이점은 무엇인가?<br>
-    </div>
+		System.out.print("finish");
+	}
+}
+        </ui-codemirror>
+      </dd>
+    </dl>
   </div>
 </div>

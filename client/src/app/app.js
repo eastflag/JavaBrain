@@ -59,14 +59,8 @@ angular
     .state('java.anonymous', {
       url: '/anonymous',
       templateUrl: 'app/java/anonymous.html',
-      controller: function($scope) {
-        $scope.editorOptions = {
-          lineWrapping : true,
-          lineNumbers: true,
-          matchBrackets: true,
-          mode: 'text/x-java'
-        };
-        console.log('anonymous');
+      controller: function() {
+    
       },
       data: {
         requireLogin: false
@@ -274,6 +268,13 @@ angular
   .run(function ($rootScope, $window) {
     //구글 analytics 초기화화
     $window.ga('create', 'UA-75723168-1');
+
+    $rootScope.editorOptions = {
+      lineWrapping : true,
+      lineNumbers: true,
+      matchBrackets: true,
+      mode: 'text/x-java'
+    };
 
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
 
