@@ -37,6 +37,15 @@ angular
           requireLogin: false
         }
       })
+    .state('login', {
+      url: '/login',
+      templateUrl: 'app/login/login.html',
+      controller: 'LoginCtrl',
+      controllerAs: 'login',
+      data: {
+        requireLogin: false
+      }
+    })
     //자바 메뉴--------------------------------------------------
     .state('java', {
       url: '/java',
