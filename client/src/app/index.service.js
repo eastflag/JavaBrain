@@ -17,5 +17,10 @@
         url: HOST + '/api/addAnswer', method: 'POST', headers: {'Content-Type': 'application/json'}, data: params
       });
     };
+    this.getSocialLogin  = function (params) {
+      return $http({
+        url: HOST + '/api/getSocialLogin', method: 'POST', headers: {'Content-Type': 'application/json'}, data: params
+      });
+    };
   }
 })();
