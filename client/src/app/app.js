@@ -17,7 +17,9 @@ angular
     'ui.router',
     'ngSanitize',
     'ngMaterial',
-    'ui.codemirror' //https://github.com/angular-ui/ui-codemirror
+    'ui.codemirror', //https://github.com/angular-ui/ui-codemirror
+    'firebase' //https://github.com/firebase/angularfire
+               //동영상: https://www.youtube.com/watch?v=LdDwbIEpT4s,
   ])
   .config(function ($mdThemingProvider, $mdIconProvider, $stateProvider, $urlRouterProvider, $httpProvider) {
     $mdIconProvider
@@ -69,7 +71,7 @@ angular
       url: '/anonymous',
       templateUrl: 'app/java/anonymous.html',
       controller: function() {
-    
+
       },
       data: {
         requireLogin: false
@@ -277,6 +279,16 @@ angular
   .run(function ($rootScope, $window) {
     //구글 analytics 초기화화
     $window.ga('create', 'UA-75723168-1');
+
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyB-5tKz1zJ_VTEJHmjuRjQNgg8lAh0xhnE",
+      authDomain: "java-brain.firebaseapp.com",
+      databaseURL: "https://java-brain.firebaseio.com",
+      storageBucket: "java-brain.appspot.com",
+      messagingSenderId: "351716998212"
+    };
+    $window.firebase.initializeApp(config);
 
     $rootScope.editorOptions = {
       lineWrapping : true,
