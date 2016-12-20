@@ -1,22 +1,19 @@
 buildscript {
 	ext {
-		springBootVersion = '1.4.0.RELEASE'
+		springBootVersion = '1.4.1.RELEASE'
 	}
 	repositories {
-		jcenter()
+		mavenCentral()
 	}
 	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("org.springframework:springloaded:1.2.0.RELEASE")
 	}
 }
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
-
-springBoot {
-	executable = true
-}
 
 group = 'com.eastflag'
 version = "0.1"
@@ -26,28 +23,29 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-	jcenter()
+	mavenCentral()
 }
 
 
 dependencies {
-	compile group: 'org.projectlombok', name: 'lombok', version:'1.16.6'
-	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'${springBootVersion}'
+	compile('org.projectlombok:lombok:1.16.6')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1")
 
-	compile group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version:'1.1.1'
-
-	compile group: 'io.jsonwebtoken', name: 'jjwt', version:'0.5.1'
-	compile group: 'io.netty', name: 'netty-all', version: '4.0.34.Final'
-	compile group: 'commons-codec', name: 'commons-codec', version:'1.10'
-	compile group: 'com.google.code.gson', name: 'gson', version:'2.4'
-	compile group: 'org.jsoup', name: 'jsoup', version:'1.8.3'
 	compile group: 'org.lazyluke', name: 'log4jdbc-remix', version:'0.2.7'
-	compile group: 'org.apache.poi', name: 'poi', version: '3.14' //xls excel  processing
-	compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.14'  //xlsx excel processing
 
-	runtime group: 'mysql', name: 'mysql-connector-java', version:'5.1.38'
+	runtime("mysql:mysql-connector-java")
 
-	testCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:'${springBootVersion}') {
-		exclude(module: 'commons-logging')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+idea {
+	module {
+		inheritOutputDirs = false
+		outputDir = file("$buildDir/classes/main/")
 	}
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '2.12'
 }
