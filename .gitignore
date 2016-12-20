@@ -1,4 +1,6 @@
 /target/
+/.gradle
 /.idea
 /build
 /gradle
+/out
