@@ -107,6 +107,16 @@ angular
         requireLogin: false
       }
     })
+      .state('java.stream', {
+        url: '/stream',
+        templateUrl: 'app/java/stream.html',
+        controller: function($scope) {
+
+        },
+        data: {
+          requireLogin: false
+        }
+      })
     //OOP 메뉴--------------------------------------------------
       .state('oop', {
         url: '/oop',
