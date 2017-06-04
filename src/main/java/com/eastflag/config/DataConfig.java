@@ -13,52 +13,34 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
-import java.util.HashMap;
-import java.util.Map;
 
 @Configuration
 @Lazy
 @EnableTransactionManagement //@MapperScan(basePackages = {"com.center.persistence"})
-@ConfigurationProperties(locations = "classpath:application.yml")
+@ConfigurationProperties(prefix = "datasource")
 public class DataConfig {
 	@Autowired
 	private ApplicationContext applicationContext;
 
-	//application.yml을 읽어들인다. Map으로 읽을려면 ConfigurationProperties를 사용
-/*	@Value("${datasource.driver-class-name}") String driverClassName;
-	@Value("${datasource.url}") String url;
-	@Value("${datasource.user-name}") String userName;
-	@Value("${datasource.password}") String password;
-	@Value("${datasource.initial-size}") int initialSize;
-	@Value("${datasource.max-active}") int maxActive;
-	@Value("${datasource.max-idle}") int maxIdle;
-	@Value("${datasource.min-idle}") int minIdle;
-	@Value("${datasource.max-wait}") int maxWait;*/
-
-	//application.yml을 읽어들인다. Map으로 읽을려면 ConfigurationProperties를 사용
-	public Map<String, String> datasource = new HashMap<>();
-
-	//getter 함수가 반드시 필요하다.
-	public Map<String, String> getDatasource() {
-		return datasource;
-	}
+	@Autowired
+	private DatasourceProfile profile;
 
 	@Bean(destroyMethod = "close")
 	public DataSource dataSource() {
 		org.apache.tomcat.jdbc.pool.DataSource dataSource = new org.apache.tomcat.jdbc.pool.DataSource();
-		dataSource.setDriverClassName(datasource.get("driver-class-name"));
-		dataSource.setUrl(datasource.get("url"));
-		dataSource.setUsername(datasource.get("user-name"));
-		dataSource.setPassword(datasource.get("password"));
-		dataSource.setInitialSize(Integer.parseInt(datasource.get("initial-size")));
-		dataSource.setMaxActive(Integer.parseInt(datasource.get("max-active")));
-		dataSource.setMaxIdle(Integer.parseInt(datasource.get("max-idle")));
-		dataSource.setMinIdle(Integer.parseInt(datasource.get("min-idle")));
-		dataSource.setMaxWait(Integer.parseInt(datasource.get("max-wait")));
+		dataSource.setDriverClassName(profile.getDriverClassName());
+		dataSource.setUrl(profile.getUrl());
+		dataSource.setUsername(profile.getUserName());
+		dataSource.setPassword(profile.getPassword());
+		dataSource.setInitialSize(Integer.parseInt(profile.getInitialSize()));
+		dataSource.setMaxActive(Integer.parseInt(profile.getMaxActive()));
+		dataSource.setMaxIdle(Integer.parseInt(profile.getMaxIdle()));
+		dataSource.setMinIdle(Integer.parseInt(profile.getMinIdle()));
+		dataSource.setMaxWait(Integer.parseInt(profile.getMaxWait()));
 		//validation connections
-		dataSource.setValidationQuery(datasource.get("validationQuery"));
-		dataSource.setValidationInterval(Integer.parseInt(datasource.get("validationInterval")));
-		dataSource.setTestOnBorrow(Boolean.parseBoolean(datasource.get("testOnBorrow")));
+		dataSource.setValidationQuery(profile.getValidationQuery());
+		dataSource.setValidationInterval(Integer.parseInt(profile.getValidationInterval()));
+		dataSource.setTestOnBorrow(Boolean.parseBoolean(profile.getTestOnBorrow()));
 		return dataSource;
 	}
 

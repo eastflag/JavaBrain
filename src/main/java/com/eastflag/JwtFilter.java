@@ -1,7 +1,6 @@
 package com.eastflag;
 
 import com.eastflag.utils.CommonUtil;
-import io.jsonwebtoken.SignatureException;
 import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.FilterChain;
@@ -11,6 +10,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.SignatureException;
 
 public class JwtFilter extends GenericFilterBean {
 
