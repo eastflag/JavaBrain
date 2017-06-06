@@ -16,12 +16,16 @@ public interface TodoMapper {
 
     @Select({"<script>",
             "SELECT * FROM todo",
+            "order by todo_id desc",
             "</script>"})
     List<TodoVO> selectTodoList();
 
     @Update({"<script>",
             "UPDATE  todo",
-            "set todo = #{todo}, updated = now()",
+            "set",
+            "<if test='isFinished!=null'>isFinished = #{isFinished}, </if>",
+            "<if test='todo!=null'>todo = #{todo}, </if>",
+            "updated = now()",
             "where todo_id = #{todo_id}",
             "</script>"})
     int updateTodo(TodoVO todo);
@@ -30,5 +34,5 @@ public interface TodoMapper {
             "DELETE from todo",
             "where todo_id = #{todo_id}",
             "</script>"})
-    int deleteTodo(TodoVO todo);
+    int deleteTodo(int todo_id);
 }

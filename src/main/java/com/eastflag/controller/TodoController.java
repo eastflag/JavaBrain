@@ -4,10 +4,7 @@ import com.eastflag.domain.TodoVO;
 import com.eastflag.persistence.TodoMapper;
 import com.eastflag.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,9 +26,13 @@ public class TodoController {
     }
 
     @RequestMapping(value="/api/todo", method={RequestMethod.DELETE})
-    public Result deleteTodo(@RequestBody TodoVO todo) {
-        todoMapper.deleteTodo(todo);
-        return new Result(0, "success");
+    public Result deleteTodo(@RequestParam int todo_id) {
+        int result = todoMapper.deleteTodo(todo_id);
+        if (result > 0) {
+            return new Result(0, "success");
+        } else {
+            return new Result(100, "nothing is deleted");
+        }
     }
 
     @RequestMapping(value="/api/todo", method={RequestMethod.GET})
