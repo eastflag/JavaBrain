@@ -33,7 +33,7 @@ public class JavaBrainApplication {
 	public FilterRegistrationBean jwtFilter() {
 		final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
 		registrationBean.setFilter(new JwtFilter());
-		registrationBean.addUrlPatterns("/admin/api/*");  //관리자
+		//registrationBean.addUrlPatterns("/admin/api/*");  //관리자
 		registrationBean.addUrlPatterns("/member/api/*"); //인증된 프런트 사용자
 		registrationBean.setOrder(1);
 
