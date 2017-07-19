@@ -15,7 +15,7 @@ public class ApiService {
     private ApiMapper apiMapper;
 
     public void addAnswer(AnswerVO answer) {
-        //answer_id 최대값 구하기
+/*        //answer_id 최대값 구하기
         int answer_id = apiMapper.selectAnswerMaxId() + 1;
         answer.setAnswer_id(answer_id);
         //전체 점수 구하기
@@ -32,6 +32,6 @@ public class ApiService {
         for(FeedbackVO feedback : answer.getFeedback()) {
             feedback.setAnswer_id(answer_id);
             apiMapper.insertFeedback(feedback);
-        }
+        }*/
     }
 }

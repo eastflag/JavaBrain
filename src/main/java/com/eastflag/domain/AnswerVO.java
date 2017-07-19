@@ -9,14 +9,12 @@ import java.util.List;
  */
 @Data
 public class AnswerVO {
-    private int answer_id;
-    private int boards_id;
-    private int member_id;
-    private int total;
-    private int sum = -1;
-    private int checked = -1;
+    private Integer answer_id;
+    private Integer category_id;
+    private Integer seq;
+    private String question;
+    private String view;
+    private String answer;
     private String created;
     private String updated;
-
-    List<FeedbackVO> feedback;
 }

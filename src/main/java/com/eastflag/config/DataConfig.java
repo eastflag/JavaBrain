@@ -32,15 +32,16 @@ public class DataConfig {
 		dataSource.setUrl(profile.getUrl());
 		dataSource.setUsername(profile.getUserName());
 		dataSource.setPassword(profile.getPassword());
-		dataSource.setInitialSize(Integer.parseInt(profile.getInitialSize()));
-		dataSource.setMaxActive(Integer.parseInt(profile.getMaxActive()));
-		dataSource.setMaxIdle(Integer.parseInt(profile.getMaxIdle()));
-		dataSource.setMinIdle(Integer.parseInt(profile.getMinIdle()));
-		dataSource.setMaxWait(Integer.parseInt(profile.getMaxWait()));
+		dataSource.setInitialSize(profile.getInitialSize());
+		dataSource.setMaxActive(profile.getMaxActive());
+		dataSource.setMaxIdle(profile.getMaxIdle());
+		dataSource.setMinIdle(profile.getMinIdle());
+		dataSource.setMaxWait(profile.getMaxWait());
+
 		//validation connections
 		dataSource.setValidationQuery(profile.getValidationQuery());
-		dataSource.setValidationInterval(Integer.parseInt(profile.getValidationInterval()));
-		dataSource.setTestOnBorrow(Boolean.parseBoolean(profile.getTestOnBorrow()));
+		dataSource.setValidationInterval(profile.getValidationInterval());
+		dataSource.setTestOnBorrow(profile.getTestOnBorrow());
 		return dataSource;
 	}
 

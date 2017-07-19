@@ -29,7 +29,7 @@ public class ApiController {
 
     @RequestMapping(value="/addAnswer")
     public Result addAnswer(@RequestBody AnswerVO answer) {
-        apiService.addAnswer(answer);
+        //apiService.addAnswer(answer);
         return new Result(0, "success");
     }
 

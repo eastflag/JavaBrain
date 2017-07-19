@@ -12,12 +12,12 @@ public class DatasourceProfile {
     private String url;
     private String userName;
     private String password;
-    private String initialSize;
-    private String maxActive;
-    private String maxIdle;
-    private String minIdle;
-    private String maxWait;
+    private Integer initialSize;
+    private Integer maxActive;
+    private Integer maxIdle;
+    private Integer minIdle;
+    private Integer maxWait;
     private String validationQuery;
-    private String validationInterval;
-    private String testOnBorrow;
+    private Integer validationInterval;
+    private Boolean testOnBorrow;
 }

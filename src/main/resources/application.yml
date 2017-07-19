@@ -9,8 +9,8 @@ mybatis:
 datasource:
   driverClassName: "com.mysql.jdbc.Driver"
   url: "jdbc:mysql://www.javabrain.kr:3306/jbdb?useUnicode=true&charaterEncoding=utf-8"
-  userName: "********"
-  password: "*******"
+  userName: "eastflag"
+  password: "dklee98"
   initialSize: 10
   maxActive: 100
   maxIdle: 10
@@ -18,4 +18,4 @@ datasource:
   maxWait: 3000
   validationQuery: "SELECT 1"
   validationInterval: 36000
-  testOnBorrow: "true"
+  testOnBorrow: true
