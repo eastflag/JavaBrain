@@ -1,6 +1,7 @@
 package com.eastflag.controller;
 
 import com.eastflag.domain.*;
+import com.eastflag.persistence.AdminMapper;
 import com.eastflag.persistence.ApiMapper;
 import com.eastflag.result.Result;
 import com.eastflag.service.ApiService;
@@ -15,10 +16,13 @@ import java.util.List;
  * Created by eastflag on 2016-09-20.
  */
 @RestController
-@RequestMapping(value="/api", method={RequestMethod.GET, RequestMethod.POST})
+@RequestMapping("/api")
 public class ApiController {
     @Autowired
     private ApiMapper apiMapper;
+
+    @Autowired
+    private AdminMapper adminMapper;
 
     @Autowired
     private ApiService apiService;
@@ -53,5 +57,10 @@ public class ApiController {
             }
         }
         return categoryList;
+    }
+
+    @RequestMapping(value="/answer", method={RequestMethod.GET})
+    public List<AnswerVO> getAnswerList(@RequestParam int category_id) {
+        return adminMapper.selectAnswerList(category_id);
     }
 }
