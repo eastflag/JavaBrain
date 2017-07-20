@@ -33,4 +33,6 @@ public interface AdminMapper {
             "where answer_id = #{answer_id}",
             "</script>"})
     int deleteAnswer(int answer_id);
+
+
 }

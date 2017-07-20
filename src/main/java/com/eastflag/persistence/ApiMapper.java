@@ -1,11 +1,15 @@
 package com.eastflag.persistence;
 
 import com.eastflag.domain.AnswerVO;
+import com.eastflag.domain.CategoryVO;
 import com.eastflag.domain.FeedbackVO;
+import com.eastflag.domain.TreeVO;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+
+import java.util.List;
 
 /**
  * Created by eastflag on 2016-09-20.
@@ -39,4 +43,10 @@ public interface ApiMapper {
             "<if score != -1>score = #{score},</if>" +
             "</script>}")
     int updateFeedback(FeedbackVO feedback);
+
+    @Select({"<script>",
+            "SELECT p.*, (select count(*) from category c where c.parent_id = p.category_id) as count FROM category p",
+            "where parent_id = #{parent_id}",
+            "</script>"})
+    List<CategoryVO> selectCategoryTree(int category_id);
 }
