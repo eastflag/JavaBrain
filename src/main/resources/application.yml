@@ -9,8 +9,8 @@ mybatis:
 datasource:
   driverClassName: "com.mysql.jdbc.Driver"
   url: "jdbc:mysql://www.javabrain.kr:3306/jbdb?useUnicode=true&charaterEncoding=utf-8"
-  userName: "eastflag"
-  password: "dklee98"
+  userName: "********"
+  password: "********"
   initialSize: 10
   maxActive: 100
   maxIdle: 10
