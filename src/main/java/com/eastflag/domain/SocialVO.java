@@ -7,5 +7,6 @@ import lombok.Data;
  */
 @Data
 public class SocialVO {
-    private String naver;
+    private String site;
+    private String url;
 }

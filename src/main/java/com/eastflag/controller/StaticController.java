@@ -1,7 +1,11 @@
 package com.eastflag.controller;
 
+import com.eastflag.ConfigConstant;
+import com.eastflag.Constant;
+import com.eastflag.utils.CommonUtil;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
@@ -23,6 +28,8 @@ import java.security.SecureRandom;
  */
 @Controller
 public class StaticController {
+    @Autowired
+    private ConfigConstant config;
 
     @RequestMapping("/naver_callback")
     public String naverLogin(@RequestParam String code, @RequestParam String state, HttpSession session) {
@@ -66,6 +73,14 @@ public class StaticController {
         //resultcode가 00이면
         //member table에서 이메일로 검색해서 없으면 회원가입을 시키고, 있으면 쿼리한후, 자체 토큰을 생성하여 리턴한다.
 
-        return "redirect:http://127.0.0.1:3000/#/login";
+        //jwt를 생성하여 client에게 넘겨준다.
+        JsonObject body = parser.parse(response.getBody()).getAsJsonObject();
+        JsonObject responseJson = body.getAsJsonObject("response");
+        String email = responseJson.get("email").getAsString();
+        String name = responseJson.get("name").getAsString();
+
+        String jwt = CommonUtil.createJWT(email, name, "naver", Constant.SESSION_TIMEOUT);
+
+        return config.naverSuccessUrl + "?token=" + jwt;
     }
 }

@@ -24,7 +24,7 @@ public class JwtFilter extends GenericFilterBean {
 		final HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse)res;
 
-        final String token = request.getHeader("X-Auth");
+        final String token = request.getHeader("Authorization");
         if (token == null || token.isEmpty()) {
             //throw new ServletException("Missing or invalid Authorization header.");
         	System.out.println("token null");
@@ -55,7 +55,7 @@ public class JwtFilter extends GenericFilterBean {
         	return;
         }
 
-        response.addHeader("X-Auth", new_token);
+        response.addHeader("Authorization", new_token);
         chain.doFilter(req, res);
 	}
 
