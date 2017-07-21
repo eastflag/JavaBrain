@@ -1,5 +1,6 @@
 package com.eastflag.controller;
 
+import com.eastflag.ConfigConstant;
 import com.eastflag.domain.*;
 import com.eastflag.persistence.AdminMapper;
 import com.eastflag.persistence.ApiMapper;
@@ -27,6 +28,9 @@ public class ApiController {
     @Autowired
     private ApiService apiService;
 
+    @Autowired
+    private ConfigConstant config;
+
     @RequestMapping(value="/addAnswer")
     public Result addAnswer(@RequestBody AnswerVO answer) {
         //apiService.addAnswer(answer);
@@ -43,7 +47,7 @@ public class ApiController {
             SecureRandom random = new SecureRandom();
             String state = new BigInteger(130, random).toString(32);
             String url = "https://nid.naver.com/oauth2.0/authorize?client_id=7aWy98Ywds8IV1NEXUAL" +
-                    "&response_type=code&redirect_uri=http://127.0.0.1:8080/naver_callback&state=" + state;
+                    "&response_type=code&redirect_uri=http://" + config.backendHost + "/naver_callback&state=" + state;
             social.setUrl(url);
         }
 

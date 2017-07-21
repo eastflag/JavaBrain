@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ConfigConstant {
-    @Value("${naver.successUrl}")
-    public String naverSuccessUrl;
+    @Value("${backend.host}")
+    public String backendHost;
+
+    @Value("${front.host}")
+    public String frontHost;
 }

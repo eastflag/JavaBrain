@@ -81,6 +81,6 @@ public class StaticController {
 
         String jwt = CommonUtil.createJWT(email, name, "naver", Constant.SESSION_TIMEOUT);
 
-        return config.naverSuccessUrl + "?token=" + jwt;
+        return String.format("redirect:http://%s/login?token=%s", config.frontHost, jwt);
     }
 }
