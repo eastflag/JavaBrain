@@ -11,13 +11,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+@Ignore
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class MongoTest {
-/*    @Autowired
+    @Autowired
     CardsRepository repository;
 
-    @Ignore
     @Test
     public void findsByWords() {
         // 전체 숫자 카운트: repository에 정의되지 않은 함수
@@ -33,5 +33,5 @@ public class MongoTest {
         //List<CardsVO> cards = repository.findRandom(3);
 
         System.out.println(repository.findOne(174l));
-    }*/
+    }
 }
