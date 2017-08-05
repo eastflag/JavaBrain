@@ -14,7 +14,7 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class MongoTest {
-    @Autowired
+/*    @Autowired
     CardsRepository repository;
 
     @Ignore
@@ -33,5 +33,5 @@ public class MongoTest {
         //List<CardsVO> cards = repository.findRandom(3);
 
         System.out.println(repository.findOne(174l));
-    }
+    }*/
 }
