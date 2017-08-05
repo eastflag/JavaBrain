@@ -33,10 +33,12 @@ dependencies {
 	compile group: 'io.jsonwebtoken', name: 'jjwt', version:'0.5.1'
 	compile group: 'com.google.code.gson', name: 'gson', version:'2.4'
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-integration
-	compile group: 'org.springframework.boot', name: 'spring-boot-starter-integration', version: '1.5.6.RELEASE'
+	//compile group: 'org.springframework.boot', name: 'spring-boot-starter-integration', version: '1.5.6.RELEASE'
     // https://mvnrepository.com/artifact/org.eclipse.paho/org.eclipse.paho.client.mqttv3
-	compile group: 'org.eclipse.paho', name: 'org.eclipse.paho.client.mqttv3', version: '1.1.1'
+	//compile group: 'org.eclipse.paho', name: 'org.eclipse.paho.client.mqttv3', version: '1.1.1'
 	compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-websocket
+	compile ('org.springframework.boot:spring-boot-starter-websocket')
 
 
 	runtime("mysql:mysql-connector-java")
