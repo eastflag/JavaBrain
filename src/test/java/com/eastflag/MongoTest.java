@@ -2,6 +2,7 @@ package com.eastflag;
 
 import com.eastflag.domain.CardsVO;
 import com.eastflag.persistence.CardsRepository;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ public class MongoTest {
     @Autowired
     CardsRepository repository;
 
+    @Ignore
     @Test
     public void findsByWords() {
         // 전체 숫자 카운트: repository에 정의되지 않은 함수
