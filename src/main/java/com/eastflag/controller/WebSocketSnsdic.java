@@ -25,10 +25,10 @@ public class WebSocketSnsdic {
     Set<Session> sessionUsers = Collections.synchronizedSet(new HashSet<Session>());
     ObjectMapper mapper = new ObjectMapper();
 
-    @Bean
+    /*@Bean
     public ServerEndpointExporter serverEndpointExporter() {
         return new ServerEndpointExporter();
-    }
+    }*/
 
     @OnOpen
     public void handleOpen(Session userSession) {
