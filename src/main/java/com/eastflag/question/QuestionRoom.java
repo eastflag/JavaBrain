@@ -16,7 +16,6 @@ public interface QuestionRoom {
 
     public void startQuestion();
     public void stopQuestion();
-    public void startResultAnnounce();
     public void closeRoom();
 
     public void setRepository(CardsRepository repository);
@@ -25,5 +24,6 @@ public interface QuestionRoom {
     public QuestionRoomConfig getRoomConfig();
     public void setRoomConfig(QuestionRoomConfig roomConfig);
 
-    public void joinRoom(Participant participant);
+    public void joinInRoom(Participant participant);
+    public void outInRoom(Participant participant);
 }

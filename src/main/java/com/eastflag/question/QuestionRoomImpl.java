@@ -5,10 +5,8 @@ import com.eastflag.persistence.CardsRepository;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class QuestionRoomImpl implements QuestionRoom {
     //
@@ -18,7 +16,8 @@ public class QuestionRoomImpl implements QuestionRoom {
     CardsRepository repository;
     MongoTemplate mongoTemplate;
 
-    List<Participant> participants = new ArrayList<Participant>();
+    //List<Participant> participants = new ArrayList<Participant>();
+    Map<String, Participant> participants = new ConcurrentHashMap<String, Participant>();
 
     @Override
     public QuestionRoomConfig getRoomConfig() {
@@ -42,14 +41,13 @@ public class QuestionRoomImpl implements QuestionRoom {
 
     @Override
     public void startQuestion() {
-        // TODO
         // Mongo DB 에서 문제를 가져온다.
-        // 문제를 참여자에게 발송한다.
-        // 문제풀이 시간 timer 를 실행한다.
-
         getQuestion();
+
+        // 문제를 참여자에게 발송한다.
         broadcastQuestion();
 
+        // 문제풀이 시간 timer 를 실행한다.
         Timer timer = new Timer();
         TimerTask timerTask = new TimerTask() {
             @Override
@@ -62,13 +60,14 @@ public class QuestionRoomImpl implements QuestionRoom {
 
     @Override
     public void stopQuestion() {
-        // TODO
         // 쓸로없는 리소스를 소거한다.
-        // 결과를 참여자에게 전송한다.
-        // 대기 시간 timer 를 실행한다.
 
+
+        // 결과를 참여자에게 전송한다.
         broadcastReport();
 
+
+        // 대기 시간 timer 를 실행한다.
         Timer timer = new Timer();
         TimerTask timerTask = new TimerTask() {
             @Override
@@ -80,11 +79,6 @@ public class QuestionRoomImpl implements QuestionRoom {
     }
 
     @Override
-    public void startResultAnnounce() {
-
-    }
-
-    @Override
     public void closeRoom() {
         // TODO
         // 모든 작동을 멈춘다.
@@ -92,8 +86,16 @@ public class QuestionRoomImpl implements QuestionRoom {
     }
 
     @Override
-    public void joinRoom(Participant participant) {
-        participants.add(participant);
+    public void joinInRoom(Participant participant) {
+        //participants.add(participant);
+        participants.put(participant.getId(), participant);
+
+        //
+    }
+
+    @Override
+    public void outInRoom(Participant participant) {
+        participants.remove(participant.getId());
     }
 
     private void getQuestion() {

@@ -1,10 +1,12 @@
 package com.eastflag.controller;
 
 import com.eastflag.domain.SnsdicVO;
+import com.eastflag.question.QuestionService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
@@ -22,6 +24,9 @@ import java.util.*;
 public class WebSocketSnsdic {
     private static Logger logger = LoggerFactory.getLogger(WebSocketSnsdic.class);
 
+    @Autowired
+    private QuestionService questionService;
+
     Set<Session> sessionUsers = Collections.synchronizedSet(new HashSet<Session>());
     ObjectMapper mapper = new ObjectMapper();
 
@@ -36,6 +41,9 @@ public class WebSocketSnsdic {
         logger.debug("WebSocket : Client Session is Open. ID is "+ userSession.getId());
         sessionUsers.add(userSession);
         //sendMessage(userSession, "S",  "connected", "");
+
+        // 문제방에 join
+        questionService.joinQuestionRoom(userSession);
     }
 
     @OnMessage
