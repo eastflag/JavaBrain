@@ -14,9 +14,9 @@ public class TodoController {
     private TodoMapper todoMapper;
 
     @RequestMapping(value="/api/todo", method={RequestMethod.POST})
-    public Result addTodo(@RequestBody TodoVO todo) {
+    public TodoVO addTodo(@RequestBody TodoVO todo) {
         todoMapper.insertTodo(todo);
-        return new Result(0, "success");
+        return todoMapper.selectTodo(todo);
     }
 
     @RequestMapping(value="/api/todo", method={RequestMethod.PUT})

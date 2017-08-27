@@ -1,6 +1,5 @@
 package com.eastflag.persistence;
 
-import com.eastflag.domain.AnswerVO;
 import com.eastflag.domain.TodoVO;
 import org.apache.ibatis.annotations.*;
 
@@ -8,6 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface TodoMapper {
+    @Options(useGeneratedKeys = true, keyProperty = "todo_id")
     @Insert({"<script>",
             "INSERT INTO todo(todo, created, updated) ",
             "VALUES(#{todo}, now(), now())",
@@ -19,6 +19,12 @@ public interface TodoMapper {
             "order by todo_id desc",
             "</script>"})
     List<TodoVO> selectTodoList();
+
+    @Select({"<script>",
+            "SELECT * FROM todo",
+            "where todo_id = #{todo_id}",
+            "</script>"})
+    TodoVO selectTodo(TodoVO todo);
 
     @Update({"<script>",
             "UPDATE  todo",
