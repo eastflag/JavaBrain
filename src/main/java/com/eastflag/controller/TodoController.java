@@ -22,9 +22,9 @@ public class TodoController {
     }
 
     @PutMapping(value="/api/todo")
-    public Result modifyTodo(@RequestBody TodoVO todo) {
+    public TodoVO modifyTodo(@RequestBody TodoVO todo) {
         todoMapper.updateTodo(todo);
-        return new Result(0, "success");
+        return todoMapper.selectTodo(todo);
     }
 
     @DeleteMapping(value="/api/todo")
