@@ -5,10 +5,10 @@ import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-public class TodoVO extends SearchVO {
-    private Integer todo_id;
-    private Boolean isFinished;
-    private String todo;
+public class NewsVO extends SearchVO {
+    private Integer news_id;
+    private String title;
+    private String content;
     private String created;
     private String updated;
 }
