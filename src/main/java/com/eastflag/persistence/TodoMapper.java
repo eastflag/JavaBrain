@@ -1,5 +1,6 @@
 package com.eastflag.persistence;
 
+import com.eastflag.domain.CommentVO;
 import com.eastflag.domain.NewsVO;
 import com.eastflag.domain.SearchVO;
 import com.eastflag.domain.TodoVO;
@@ -45,8 +46,7 @@ public interface TodoMapper {
             "</script>"})
     int deleteTodo(int todo_id);
 
-    //News -------------------------------------
-    @Options(useGeneratedKeys = true, keyProperty = "news_id")
+    //News -------------------------------------------------------------------------------------------------------------
     @Insert({"<script>",
             "INSERT INTO news(title, content, created) ",
             "VALUES(#{title}, #{content}, now())",
@@ -58,13 +58,18 @@ public interface TodoMapper {
             "order by news_id desc",
             "<if test='start_index!=null'>LIMIT #{start_index}, #{page_size}</if>",
             "</script>"})
-    List<NewsVO> selectNewsList(SearchVO search);
+    List<NewsVO> selectNews(NewsVO news);
+
+    @Select({"<script>",
+            "SELECT count(*) FROM news",
+            "</script>"})
+    int countNews();
 
     @Select({"<script>",
             "SELECT * FROM news",
             "where news_id = #{news_id}",
             "</script>"})
-    NewsVO selectNews(int news_id);
+    NewsVO selectOneNews(int news_id);
 
     @Update({"<script>",
             "UPDATE news",
@@ -81,4 +86,29 @@ public interface TodoMapper {
             "where news_id = #{news_id}",
             "</script>"})
     int deleteNews(int news_id);
+
+    //comment  ---------------------------------------------------------------------------------------------------------
+    @Insert({"<script>",
+            "INSERT INTO news(title, content, created) ",
+            "VALUES(#{title}, #{content}, now())",
+            "</script>"})
+    int insertComment(CommentVO comment);
+
+    @Select({"<script>",
+            "SELECT * FROM comment",
+            "order by comment_id desc",
+            "</script>"})
+    List<CommentVO> selectComment();
+
+    @Update({"<script>",
+            "UPDATE comment set comment = #{comment}",
+            "where comment_id = #{comment_id}",
+            "</script>"})
+    int updateComment(CommentVO comment);
+
+    @Delete({"<script>",
+            "DELETE from comment",
+            "where comment_id = #{comment_id}",
+            "</script>"})
+    int deleteComment(int comment_id);
 }
