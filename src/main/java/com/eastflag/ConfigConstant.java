@@ -13,4 +13,10 @@ public class ConfigConstant {
 
     @Value("${front.host}")
     public String frontHost;
+
+    @Value("${upload.root_folder}")
+    public String uploadRootFolder;
+
+    @Value("${news_image_folder}")
+    public String news_image_folder;
 }
