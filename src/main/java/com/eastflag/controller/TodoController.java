@@ -92,8 +92,8 @@ public class TodoController {
 
     // 댓글 관리--------------------------------------------------------------------------------------------------------
     @GetMapping(value="/api/comment")
-    public List<CommentVO> findComment() {
-        return todoMapper.selectComment();
+    public List<CommentVO> findComment(@RequestParam int news_id) {
+        return todoMapper.selectComment(news_id);
     }
 
     @PostMapping(value="/api/comment")

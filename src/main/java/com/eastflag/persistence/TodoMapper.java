@@ -54,7 +54,8 @@ public interface TodoMapper {
     int insertNews(NewsVO news);
 
     @Select({"<script>",
-            "SELECT * FROM news",
+            "SELECT N.*, (select count(*) from comment where news_id = N.news_id) as comment_count",
+            "FROM news N",
             "order by news_id desc",
             "<if test='start_index!=null'>LIMIT #{start_index}, #{page_size}</if>",
             "</script>"})
@@ -88,20 +89,21 @@ public interface TodoMapper {
     int deleteNews(int news_id);
 
     //comment  ---------------------------------------------------------------------------------------------------------
+    @Select({"<script>",
+            "SELECT comment.*, member.name FROM comment inner join member on comment.member_id = member.member_id",
+            "WHERE news_id = #{news_id}",
+            "order by comment_id desc",
+            "</script>"})
+    List<CommentVO> selectComment(int news_id);
+
     @Insert({"<script>",
-            "INSERT INTO news(title, content, created) ",
-            "VALUES(#{title}, #{content}, now())",
+            "INSERT INTO comment(member_id, news_id, content, created) ",
+            "VALUES(#{member_id}, #{news_id}, #{content}, now())",
             "</script>"})
     int insertComment(CommentVO comment);
 
-    @Select({"<script>",
-            "SELECT * FROM comment",
-            "order by comment_id desc",
-            "</script>"})
-    List<CommentVO> selectComment();
-
     @Update({"<script>",
-            "UPDATE comment set comment = #{comment}",
+            "UPDATE comment set content = #{content}",
             "where comment_id = #{comment_id}",
             "</script>"})
     int updateComment(CommentVO comment);

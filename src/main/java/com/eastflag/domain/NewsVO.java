@@ -11,4 +11,6 @@ public class NewsVO extends SearchVO {
     private String content;
     private String created;
     private String updated;
+
+    private Integer comment_count;
 }

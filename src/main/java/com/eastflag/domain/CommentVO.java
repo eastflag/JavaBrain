@@ -9,6 +9,8 @@ public class CommentVO {
     private Integer comment_id;
     private Integer member_id;
     private Integer news_id;
-    private String comment;
+    private String content;
     private String updated;
+
+    private String nickname;
 }
