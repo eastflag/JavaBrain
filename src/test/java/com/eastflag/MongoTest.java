@@ -43,6 +43,7 @@ public class MongoTest {
         System.out.println(repository.findOne(174l));
     }
 
+    @Ignore
     @Test
     public void templateTest() {
         //CardsVO cards = mongoTemplate.executeCommand("db.cards.find().limit(1).skip(_rand()*db.cards.count())", CardsVO.class);

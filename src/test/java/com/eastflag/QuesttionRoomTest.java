@@ -23,6 +23,7 @@ public class QuesttionRoomTest {
     @Autowired
     MongoTemplate mongoTemplate;
 
+    @Ignore
     @Test
     public void startQuestion() {
         // QuestionRoom 을 만든다.
