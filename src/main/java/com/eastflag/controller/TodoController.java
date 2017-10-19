@@ -119,7 +119,7 @@ public class TodoController {
     }
 
     // 파일 업로드
-    @RequestMapping("/api/imageUpload")
+    @PostMapping("/api/imageUpload")
     public Result imageUpload(@RequestPart(value="file") MultipartFile file) {
         try {
             //상품 이미지가 있는지 체크
