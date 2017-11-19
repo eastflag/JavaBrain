@@ -12,5 +12,5 @@ public class CommentVO {
     private String content;
     private String updated;
 
-    private String name;
+    private String nickname;
 }

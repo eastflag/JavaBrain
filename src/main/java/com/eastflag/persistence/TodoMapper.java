@@ -90,7 +90,7 @@ public interface TodoMapper {
 
     //comment  ---------------------------------------------------------------------------------------------------------
     @Select({"<script>",
-            "SELECT comment.*, member.name FROM comment inner join member on comment.member_id = member.member_id",
+            "SELECT comment.*, member.nickname FROM comment inner join member on comment.member_id = member.member_id",
             "WHERE news_id = #{news_id}",
             "order by comment_id desc",
             "</script>"})
