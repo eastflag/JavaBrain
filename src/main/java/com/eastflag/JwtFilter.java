@@ -55,7 +55,7 @@ public class JwtFilter extends GenericFilterBean {
         	return;
         }
 
-        response.addHeader("Authorization", new_token);
+        response.addHeader("refresh_token", new_token);
         chain.doFilter(req, res);
 	}
 
