@@ -8,12 +8,14 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Created by eastflag on 2016-09-20.
  */
+@Repository
 @Mapper
 public interface ApiMapper {
 

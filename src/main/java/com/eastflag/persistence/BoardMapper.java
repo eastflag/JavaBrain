@@ -2,12 +2,14 @@ package com.eastflag.persistence;
 
 import com.eastflag.domain.BoardVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Created by eastflag on 2016-06-30.
  */
+@Repository
 @Mapper
 public interface BoardMapper {
     BoardVO selectBoard(BoardVO board);
