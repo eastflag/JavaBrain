@@ -2,9 +2,11 @@ package com.eastflag.persistence;
 
 import com.eastflag.domain.AnswerVO;
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 @Mapper
 public interface AdminMapper {
     @Select({"<script>",

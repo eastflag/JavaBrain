@@ -5,9 +5,11 @@ import com.eastflag.domain.NewsVO;
 import com.eastflag.domain.SearchVO;
 import com.eastflag.domain.TodoVO;
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 @Mapper
 public interface TodoMapper {
     @Options(useGeneratedKeys = true, keyProperty = "todo_id")

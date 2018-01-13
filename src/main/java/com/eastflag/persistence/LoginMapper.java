@@ -4,9 +4,11 @@ import com.eastflag.domain.AuthVO;
 import com.eastflag.domain.MemberLogVO;
 import com.eastflag.domain.MemberVO;
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 @Mapper
 public interface LoginMapper {
 
