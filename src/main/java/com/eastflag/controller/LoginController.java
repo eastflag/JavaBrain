@@ -88,6 +88,18 @@ public class LoginController {
             String url = "https://nid.naver.com/oauth2.0/authorize?client_id=7aWy98Ywds8IV1NEXUAL" +
                     "&response_type=code&redirect_uri=http://" + configConstant.backendHost + "/naver_callback&state=" + state;
             social.setUrl(url);
+        } else if ("naver2".equals(site)) { // localhost:4200 접근용
+            SecureRandom random = new SecureRandom();
+            String state = new BigInteger(130, random).toString(32);
+            String url = "https://nid.naver.com/oauth2.0/authorize?client_id=7aWy98Ywds8IV1NEXUAL" +
+                    "&response_type=code&redirect_uri=http://" + configConstant.backendHost + "/naver_callback2&state=" + state;
+            social.setUrl(url);  // www.javabrain
+        } else if ("naver3".equals(site)) { // www.javabrain.kr:3000 접근용
+            SecureRandom random = new SecureRandom();
+            String state = new BigInteger(130, random).toString(32);
+            String url = "https://nid.naver.com/oauth2.0/authorize?client_id=7aWy98Ywds8IV1NEXUAL" +
+                    "&response_type=code&redirect_uri=http://" + configConstant.backendHost + "/naver_callback3&state=" + state;
+            social.setUrl(url);
         } else if ("kakao".equals(site)) {
             String url = "https://kauth.kakao.com/oauth/authorize?client_id=7cbf743459adef91cc9af0231f094ed6" +
                     "&redirect_uri=http://" + configConstant.backendHost + "/kakao_callback&response_type=code";

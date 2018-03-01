@@ -2,6 +2,9 @@ package com.eastflag.controller;
 
 import com.eastflag.ConfigConstant;
 import com.eastflag.Constant;
+import com.eastflag.domain.AuthVO;
+import com.eastflag.domain.MemberVO;
+import com.eastflag.persistence.LoginMapper;
 import com.eastflag.utils.CommonUtil;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -22,6 +25,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.util.List;
 
 /**
  * Created by eastflag on 2016-11-23.
@@ -29,10 +33,30 @@ import java.security.SecureRandom;
 @Controller
 public class StaticController {
     @Autowired
-    private ConfigConstant config;
+    private ConfigConstant configConstant;
 
+    @Autowired
+    private LoginMapper loginMapper;
+
+    // javabrain 사이트 로그인
     @RequestMapping("/naver_callback")
-    public String naverLogin(@RequestParam String code, @RequestParam String state, HttpSession session) {
+    public String naverLogin1(@RequestParam String code, @RequestParam String state, HttpSession session) {
+        return naverLogin(code, state, session, configConstant.frontHost);
+    }
+
+    // 교육용 localhost
+    @RequestMapping("/naver_callback2")
+    public String naverLogin2(@RequestParam String code, @RequestParam String state, HttpSession session) {
+        return naverLogin(code, state, session, "127.0.0.1:4200");
+    }
+
+    // 교육용 상용 사이트
+    @RequestMapping("/naver_callback3")
+    public String naverLogin3(@RequestParam String code, @RequestParam String state, HttpSession session) {
+        return naverLogin(code, state, session, "www.javabrain.kr:3000");
+    }
+
+    private String naverLogin(String code, String state, HttpSession session, String redirectUrl) {
         //access token 조회--------------------------------------------------------------
         RestTemplate restTemplate = new RestTemplate();
         //String authUri = "https://nid.naver.com/oauth2.0/authorize";
@@ -77,10 +101,48 @@ public class StaticController {
         JsonObject body = parser.parse(response.getBody()).getAsJsonObject();
         JsonObject responseJson = body.getAsJsonObject("response");
         String email = responseJson.get("email").getAsString();
-        String name = responseJson.get("name").getAsString();
+        String photo_url = responseJson.get("profile_image").getAsString();
+        //String name = responseJson.get("name").getAsString();
 
-        String jwt = CommonUtil.createJWT(email, name, "naver", Constant.SESSION_TIMEOUT);
+        MemberVO inMember = new MemberVO();
+        inMember.setEmail(email);
+        inMember.setJoin_path("naver");
+        inMember.setPhoto_url(photo_url);
 
-        return String.format("redirect:http://%s/login?token=%s", config.frontHost, jwt);
+        MemberVO member = loginMapper.selectMember(inMember);
+        // 테이블에 없을시 회원가입 페이지로 리다이렉트, 있을경우 토큰 발행
+        if (member == null) {
+            return String.format("redirect:http://%s/login?result=100&email=%s&join_path=%s&photo_url=%s",
+                    redirectUrl, email, "naver", photo_url);
+        } else {
+            getToken(member);
+            return String.format("redirect:http://%s/login?result=0&token=%s", redirectUrl, member.getToken());
+        }
+    }
+
+    /**
+     * 토큰 발행: id:  member_id, issuer: email, subject: role
+     * @param member
+     */
+    private void getToken(MemberVO member) {
+        // 토큰
+        String token;
+        try {
+            List<AuthVO> authList = loginMapper.selectAuth(member);
+            StringBuffer role = new StringBuffer();
+            if (authList != null && authList.size() > 0) {
+                for(AuthVO auth : authList) {
+                    role.append(",");
+                    role.append(auth.getRole());
+                }
+                role.deleteCharAt(0);
+            }
+
+            token = CommonUtil.createJWT(String.valueOf(member.getMember_id()), member.getEmail(),
+                    role.toString(), Constant.SESSION_TIMEOUT);
+            member.setToken(token);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
