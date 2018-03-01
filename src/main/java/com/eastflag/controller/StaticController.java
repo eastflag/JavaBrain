@@ -47,7 +47,7 @@ public class StaticController {
     // 교육용 localhost
     @RequestMapping("/naver_callback2")
     public String naverLogin2(@RequestParam String code, @RequestParam String state, HttpSession session) {
-        return naverLogin(code, state, session, "127.0.0.1:4200");
+        return naverLogin(code, state, session, "localhost:4200");
     }
 
     // 교육용 상용 사이트
