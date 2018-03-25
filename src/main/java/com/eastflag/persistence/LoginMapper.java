@@ -43,6 +43,12 @@ public interface LoginMapper {
             "</script>"})
     MemberVO selectMemberByNickname(MemberVO member);
 
+    @Select({"<script>",
+            "SELECT * FROM member",
+            "WHERE member_id= #{member_id}",
+            "</script>"})
+    MemberVO selectMemberById(int member_id);
+
     @Update({"<script>",
             "UPDATE member",
             "set is_used = #{is_used}",

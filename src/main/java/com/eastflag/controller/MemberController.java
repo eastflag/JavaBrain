@@ -2,6 +2,8 @@ package com.eastflag.controller;
 
 import com.eastflag.ConfigConstant;
 import com.eastflag.domain.CommentVO;
+import com.eastflag.domain.MemberVO;
+import com.eastflag.persistence.LoginMapper;
 import com.eastflag.persistence.TodoMapper;
 import com.eastflag.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ public class MemberController {
 
     @Autowired
     private TodoMapper todoMapper;
+
+    @Autowired
+    private LoginMapper loginMapper;
 
     // 댓글 관리--------------------------------------------------------------------------------------------------------
     @GetMapping(value="/api/comment")
@@ -44,5 +49,17 @@ public class MemberController {
         } else {
             return new Result(100, "nothing is deleted");
         }
+    }
+
+    // 회원정보
+    @GetMapping("/api/member")
+    public MemberVO findMember(@RequestParam int member_id) {
+        return loginMapper.selectMemberById(member_id);
+    }
+
+    @PutMapping("/api/member")
+    public Result findMember(@RequestBody MemberVO member) {
+        loginMapper.updateNickname(member);
+        return new Result(0, "success");
     }
 }

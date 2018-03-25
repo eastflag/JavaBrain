@@ -73,7 +73,7 @@ public class LoginController {
     }
 
     @GetMapping(value="/api/nickname")
-    public MemberVO modifyNickname(@RequestParam int member_id) {
+    public MemberVO getNickname(@RequestParam int member_id) {
         return loginMapper.selectNickname(member_id);
     }
 
