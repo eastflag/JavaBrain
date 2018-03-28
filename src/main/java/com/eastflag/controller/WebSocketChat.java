@@ -98,9 +98,9 @@ public class WebSocketChat {
     private void broadcast(Session userSession, ChatVO chat) {
         logger.debug("boradcaser id: " + userSession.getId());
         for(String id : mSessionUsers.keySet()) {
-            if (!userSession.getId().equals(id)) {
+            //if (!userSession.getId().equals(id)) {
                 sendMessage(mSessionUsers.get(id), chat);
-            }
+            //}
         }
     }
 }
