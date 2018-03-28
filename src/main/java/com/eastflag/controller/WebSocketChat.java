@@ -49,9 +49,7 @@ public class WebSocketChat {
 
         if ("IAmTom".equals(chat.getCommand())) {
             saveUser(userSession, chat);
-        } else if ("Send".equals(chat.getCommand())) {
-            logger.debug("Send, size: " + mSessionUsers.size());
-            chat.setCommand("Receive");
+        } else if ("SendToEveryone".equals(chat.getCommand())) {
             broadcast(userSession, chat);
         }
     }
@@ -74,7 +72,7 @@ public class WebSocketChat {
      */
     private void sendMessage(Session userSession, ChatVO chat) {
         try {
-            logger.debug("WebSocket : send message " + userSession.getId() + "," + chat.getMessage());
+            logger.debug("WebSocket : send message " + userSession.getId() + "," + chat);
             userSession.getBasicRemote().sendText(mMapper.writeValueAsString(chat));
         } catch (JsonProcessingException e) {
             e.printStackTrace();
@@ -92,11 +90,14 @@ public class WebSocketChat {
         logger.debug("WebSocket : save user " + chat);
     }
 
+    /**
+     * 메시지를 send한 사람을 제외한 모든 사람에게 메시지 전송
+     * @param userSession
+     * @param chat
+     */
     private void broadcast(Session userSession, ChatVO chat) {
         logger.debug("boradcaser id: " + userSession.getId());
-        logger.debug(" id size : " + mSessionUsers.size());
         for(String id : mSessionUsers.keySet()) {
-            logger.debug("id:" + id);
             if (!userSession.getId().equals(id)) {
                 sendMessage(mSessionUsers.get(id), chat);
             }
