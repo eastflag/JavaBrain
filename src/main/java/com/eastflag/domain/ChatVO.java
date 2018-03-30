@@ -6,9 +6,9 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class ChatVO {
-    private String session_id;
     private Integer member_id;
-    private String nickname;
+    private String from;
     private String command;
     private String message;
+    private Long date; // timestamp
 }
