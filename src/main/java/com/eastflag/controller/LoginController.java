@@ -102,9 +102,8 @@ public class LoginController {
             social.setUrl(url);
         } else if ("kakao".equals(site)) {
             SecureRandom random = new SecureRandom();
-            String state = new BigInteger(130, random).toString(32);
             String url = "https://kauth.kakao.com/oauth/authorize?client_id=65adac6a230c028f0488c1557a25e1b4" +
-                    "&redirect_uri=http://" + configConstant.backendHost + "/kakao_callback&response_type=code&state=" + state;
+                    "&redirect_uri=http://" + configConstant.backendHost + "/kakao_callback&response_type=code";
             social.setUrl(url);
         } else if ("kakao2".equals(site)) {
             String url = "https://kauth.kakao.com/oauth/authorize?client_id=65adac6a230c028f0488c1557a25e1b4" +

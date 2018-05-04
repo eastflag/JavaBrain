@@ -13,21 +13,14 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.social.connect.ConnectionRepository;
-import org.springframework.social.facebook.api.Facebook;
-import org.springframework.social.facebook.api.UserOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.math.BigInteger;
-import java.security.SecureRandom;
 import java.util.List;
 
 /**
@@ -40,14 +33,6 @@ public class StaticController {
 
     @Autowired
     private LoginMapper loginMapper;
-
-    private Facebook facebook;
-    private ConnectionRepository connectionRepository;
-
-    public StaticController(Facebook facebook, ConnectionRepository connectionRepository) {
-        this.facebook = facebook;
-        this.connectionRepository = connectionRepository;
-    }
 
     // naver javabrain 사이트 로그인 ----------------------------------------------------------------------------
     @RequestMapping("/naver_callback")
