@@ -100,39 +100,31 @@ public class LoginController {
             String url = "https://nid.naver.com/oauth2.0/authorize?client_id=7aWy98Ywds8IV1NEXUAL" +
                     "&response_type=code&redirect_uri=http://" + configConstant.backendHost + "/naver_callback3&state=" + state;
             social.setUrl(url);
-        } else if ("kakao".equals(site)) {
+        } else if (site.startsWith("kakao")) {
             SecureRandom random = new SecureRandom();
             String url = "https://kauth.kakao.com/oauth/authorize?client_id=65adac6a230c028f0488c1557a25e1b4" +
-                    "&redirect_uri=http://" + configConstant.backendHost + "/kakao_callback&response_type=code";
-            social.setUrl(url);
-        } else if ("kakao2".equals(site)) {
-            String url = "https://kauth.kakao.com/oauth/authorize?client_id=65adac6a230c028f0488c1557a25e1b4" +
-                    "&redirect_uri=http://" + configConstant.backendHost + "/kakao_callback2&response_type=code";
-            social.setUrl(url);
-        } else if ("kakao3".equals(site)) {
-            String url = "https://kauth.kakao.com/oauth/authorize?client_id=65adac6a230c028f0488c1557a25e1b4" +
-                    "&redirect_uri=http://" + configConstant.backendHost + "/kakao_callback3&response_type=code";
+                    "&redirect_uri=http://" + configConstant.backendHost + "/kakao_callback&response_type=code&state=" + site;
             social.setUrl(url);
         } else if ("facebook".equals(site)) {
             SecureRandom random = new SecureRandom();
             String state = new BigInteger(130, random).toString(32);
-            String url = "https://www.facebook.com/v2.5/dialog/oauth?client_id=735425506598629" +
+            String url = "https://www.facebook.com/v2.8/dialog/oauth?client_id=735425506598629" +
                     "&response_type=code&redirect_uri=http://" + configConstant.backendHost + "/facebook_callback&state=" + state
-                    + "&scope=user_posts";
+                    + "&scope=public_profile,email";
             social.setUrl(url);
         } else if ("facebook2".equals(site)) {
             SecureRandom random = new SecureRandom();
             String state = new BigInteger(130, random).toString(32);
-            String url = "https://www.facebook.com/v2.5/dialog/oauth?client_id=735425506598629" +
+            String url = "https://www.facebook.com/v2.8/dialog/oauth?client_id=735425506598629" +
                     "&response_type=code&redirect_uri=http://" + configConstant.backendHost + "/facebook_callback2&state=" + state
-                    + "&scope=user_posts";
+                    + "&scope=public_profile,email";
             social.setUrl(url);
         } else if ("facebook3".equals(site)) {
             SecureRandom random = new SecureRandom();
             String state = new BigInteger(130, random).toString(32);
-            String url = "https://www.facebook.com/v2.5/dialog/oauth?client_id=735425506598629" +
+            String url = "https://www.facebook.com/v2.8/dialog/oauth?client_id=735425506598629" +
                     "&response_type=code&redirect_uri=http://" + configConstant.backendHost + "/facebook_callback3&state=" + state
-                    + "&scope=user_posts";
+                    + "&scope=public_profile,email";
             social.setUrl(url);
         }
 

@@ -6,6 +6,7 @@ import com.eastflag.domain.AuthVO;
 import com.eastflag.domain.MemberVO;
 import com.eastflag.persistence.LoginMapper;
 import com.eastflag.utils.CommonUtil;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,37 +56,33 @@ public class StaticController {
     // kakao javabrain 사이트 로그인---------------------------------------------------------------------------
     @RequestMapping("/kakao_callback")
     public String kakaoLogin1(@RequestParam String code, @RequestParam String state, HttpSession session) {
-        return kakaoLogin(code, session, configConstant.frontHost);
-    }
-
-    // kakao 교육용 localhost
-    @RequestMapping("/kakao_callback2")
-    public String kakaoLogin2(@RequestParam String code, @RequestParam String state, HttpSession session) {
-        return kakaoLogin(code, session, "localhost:4200");
-    }
-
-    // kakao 교육용 상용 사이트
-    @RequestMapping("/kakao_callback3")
-    public String kakaoLogin3(@RequestParam String code, @RequestParam String state, HttpSession session) {
-        return kakaoLogin(code, session, "www.javabrain.kr:3000");
+        String redirectUrl = null;
+        if ("kakao2".equals(state)) {
+            redirectUrl = "localhost:4200";
+        } else if ("kakao3".equals(state)) {
+            redirectUrl = "www.javabrain.kr:3000";
+        } else {
+            redirectUrl = configConstant.frontHost;
+        }
+        return kakaoLogin(code, redirectUrl);
     }
 
     // facebook javabrain 사이트 로그인---------------------------------------------------------------------------
     @RequestMapping("/facebook_callback")
     public String facebookLogin1(@RequestParam String code, @RequestParam String state, HttpSession session) {
-        return facebookLogin(code, state, session, configConstant.frontHost);
+        return facebookLogin(code, state, "/facebook_callback", configConstant.frontHost);
     }
 
     // facebook 교육용 localhost
     @RequestMapping("/facebook_callback2")
     public String facebookLogin2(@RequestParam String code, @RequestParam String state, HttpSession session) {
-        return facebookLogin(code, state, session, "localhost:4200");
+        return facebookLogin(code, state, "/facebook_callback2", "localhost:4200");
     }
 
     // facebook 교육용 상용 사이트
     @RequestMapping("/facebook_callback3")
     public String facebookLogin3(@RequestParam String code, @RequestParam String state, HttpSession session) {
-        return facebookLogin(code, state, session, "www.javabrain.kr:3000");
+        return facebookLogin(code, state, "/facebook_callback3", "www.javabrain.kr:3000");
     }
 
     private String naverLogin(String code, String state, HttpSession session, String redirectUrl) {
@@ -152,7 +149,7 @@ public class StaticController {
         }
     }
 
-    private String kakaoLogin(String code, HttpSession session, String redirectUrl) {
+    private String kakaoLogin(String code, String redirectUrl) {
         //access token 조회--------------------------------------------------------------
         RestTemplate restTemplate = new RestTemplate();
 
@@ -171,10 +168,10 @@ public class StaticController {
         JsonObject json = parser.parse(token).getAsJsonObject();
 
         String access_token = json.get("access_token").getAsString();
-        String refresh_token = json.get("refresh_token").getAsString();
-
-        System.out.println("access token:" + access_token);
-        System.out.println("refresh_token:" + refresh_token);
+//        String refresh_token = json.get("refresh_token").getAsString();
+//
+//        System.out.println("access token:" + access_token);
+//        System.out.println("refresh_token:" + refresh_token);
 
         //프로파일 정보 조회--------------------------------------------------------------
         String profileUri = "https://kapi.kakao.com/v1/user/me";
@@ -192,34 +189,40 @@ public class StaticController {
 
         //jwt를 생성하여 client에게 넘겨준다.
         JsonObject body = parser.parse(response.getBody()).getAsJsonObject();
-        String email = body.get("kaccount_email").getAsString();
-        JsonObject properties = body.getAsJsonObject("properties");
-        String photo_url = properties.get("profile_image").getAsString();
+        String email = null;
+        if (body.has("kaccount_email")) {
+            email = body.get("kaccount_email").getAsString();
+        } else {
+            email = body.get("id").getAsString();
+        }
+        //JsonObject properties = body.getAsJsonObject("properties");
+        //String photo_url = properties.get("profile_image").getAsString();
 
         MemberVO inMember = new MemberVO();
         inMember.setEmail(email);
         inMember.setJoin_path("kakao");
-        inMember.setPhoto_url(photo_url);
+        //inMember.setPhoto_url(photo_url);
 
         MemberVO member = loginMapper.selectMember(inMember);
         if (member == null) {
             return String.format("redirect:http://%s/login?result=100&email=%s&join_path=%s&photo_url=%s",
-                    redirectUrl, email, "kakao", photo_url);
+                    redirectUrl, email, "kakao", "");
         } else {
             getToken(member);
             return String.format("redirect:http://%s/login?result=0&token=%s", redirectUrl, member.getToken());
         }
     }
 
-    private String facebookLogin(String code, String state, HttpSession session, String redirectUrl) {
+    private String facebookLogin(String code, String state, String facebookUrl, String redirectUrl) {
         //access token 조회--------------------------------------------------------------
         RestTemplate restTemplate = new RestTemplate();
         //String authUri = "https://nid.naver.com/oauth2.0/authorize";
-        String tokenUri = "https://graph.facebook.com/oauth/access_token";
+        String tokenUri = "https://graph.facebook.com/v2.8/oauth/access_token";
         MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
         parameters.add("client_id", "735425506598629");
+        parameters.add("redirect_uri", "http://" + configConstant.backendHost + facebookUrl);
         parameters.add("client_secret", "5250f8718e9004bff75fb536999d2cbe");
-        parameters.add("grant_type", "authorization_code");
+        // parameters.add("grant_type", "client_credentials");
         parameters.add("state", state);
         parameters.add("code", code);
 
@@ -230,45 +233,47 @@ public class StaticController {
         JsonObject json = parser.parse(token).getAsJsonObject();
 
         String access_token = json.get("access_token").getAsString();
-        String refresh_token = json.get("refresh_token").getAsString();
-
-        System.out.println("access token:" + access_token);
-        System.out.println("refresh_token:" + refresh_token);
+//        String refresh_token = json.get("refresh_token").getAsString();
+//
+//        System.out.println("access token:" + access_token);
+//        System.out.println("refresh_token:" + refresh_token);
 
         //프로파일 정보 조회--------------------------------------------------------------
-        String profileUri = "https://www.facebook.com/dialog/oauth";
+        String profileUri = "https://graph.facebook.com/v2.8/me";
         parameters.clear();
-        parameters.add("", "");
+        parameters.add("fields", "email");
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + access_token);
         HttpEntity entity = new HttpEntity(headers);
         ResponseEntity<String> response = restTemplate.exchange(profileUri, HttpMethod.GET, entity, String.class);
         System.out.println("response:" + response.getBody());
-        //{"resultcode":"00","message":"success","response":{"email":"leesott@naver.com","nickname":"lee****",
-        // "enc_id":"06ced2e089c040b245f0944c7e50cfba2243c6688cf26553d6822c6744f1cafd","profile_image":"https:\/\/ssl.pstatic.net\/static\/pwe\/address\/nodata_33x33.gif",
-        // "age":"40-49","gender":"M","id":"36112080","name":"\uc774\ub3d9\uae30","birthday":"08-26"}}
+        // response:{"name":"DongKee Lee","id":"1129276577139566"}
 
         //resultcode가 00이면
         //member table에서 이메일로 검색해서 없으면 회원가입을 시키고, 있으면 쿼리한후, 자체 토큰을 생성하여 리턴한다.
 
         //jwt를 생성하여 client에게 넘겨준다.
-        JsonObject body = parser.parse(response.getBody()).getAsJsonObject();
-        JsonObject responseJson = body.getAsJsonObject("response");
-        String email = responseJson.get("email").getAsString();
-        String photo_url = responseJson.get("profile_image").getAsString();
+        JsonObject responseJson = parser.parse(response.getBody()).getAsJsonObject();
+        String email = null;
+        if (responseJson.has("email")) {
+            email = responseJson.get("email").getAsString();
+        } else {
+            email = responseJson.get("id").getAsString();
+        }
+        //String photo_url = responseJson.get("profile_image").getAsString();
         //String name = responseJson.get("name").getAsString();
 
         MemberVO inMember = new MemberVO();
         inMember.setEmail(email);
         inMember.setJoin_path("facebook");
-        inMember.setPhoto_url(photo_url);
+        //inMember.setPhoto_url(photo_url);
 
         MemberVO member = loginMapper.selectMember(inMember);
         // 테이블에 없을시 회원가입 페이지로 리다이렉트, 있을경우 토큰 발행
         if (member == null) {
             return String.format("redirect:http://%s/login?result=100&email=%s&join_path=%s&photo_url=%s",
-                    redirectUrl, email, "naver", photo_url);
+                    redirectUrl, email, "naver", "");
         } else {
             getToken(member);
             return String.format("redirect:http://%s/login?result=0&token=%s", redirectUrl, member.getToken());
