@@ -141,11 +141,11 @@ public class StaticController {
         MemberVO member = loginMapper.selectMember(inMember);
         // 테이블에 없을시 회원가입 페이지로 리다이렉트, 있을경우 토큰 발행
         if (member == null) {
-            return String.format("redirect:http://%s/login?result=100&email=%s&join_path=%s&photo_url=%s",
+            return String.format("redirect:http://%s/register?result=100&email=%s&join_path=%s&photo_url=%s",
                     redirectUrl, email, "naver", photo_url);
         } else {
             getToken(member);
-            return String.format("redirect:http://%s/login?result=0&token=%s", redirectUrl, member.getToken());
+            return String.format("redirect:http://%s/register?result=0&token=%s", redirectUrl, member.getToken());
         }
     }
 
@@ -205,11 +205,11 @@ public class StaticController {
 
         MemberVO member = loginMapper.selectMember(inMember);
         if (member == null) {
-            return String.format("redirect:http://%s/login?result=100&email=%s&join_path=%s&photo_url=%s",
+            return String.format("redirect:http://%s/register?result=100&email=%s&join_path=%s&photo_url=%s",
                     redirectUrl, email, "kakao", "");
         } else {
             getToken(member);
-            return String.format("redirect:http://%s/login?result=0&token=%s", redirectUrl, member.getToken());
+            return String.format("redirect:http://%s/register?result=0&token=%s", redirectUrl, member.getToken());
         }
     }
 
@@ -272,11 +272,11 @@ public class StaticController {
         MemberVO member = loginMapper.selectMember(inMember);
         // 테이블에 없을시 회원가입 페이지로 리다이렉트, 있을경우 토큰 발행
         if (member == null) {
-            return String.format("redirect:http://%s/login?result=100&email=%s&join_path=%s&photo_url=%s",
-                    redirectUrl, email, "naver", "");
+            return String.format("redirect:http://%s/register?result=100&email=%s&join_path=%s&photo_url=%s",
+                    redirectUrl, email, "facebook", "");
         } else {
             getToken(member);
-            return String.format("redirect:http://%s/login?result=0&token=%s", redirectUrl, member.getToken());
+            return String.format("redirect:http://%s/register?result=0&token=%s", redirectUrl, member.getToken());
         }
     }
 
