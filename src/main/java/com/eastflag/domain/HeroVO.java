@@ -12,6 +12,7 @@ public class HeroVO {
     private String sex;
     private String country;
     private String address;
+    private String photo;
     private String power;
     private String created;
 }

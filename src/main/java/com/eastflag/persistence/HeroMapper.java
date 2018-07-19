@@ -10,8 +10,8 @@ import java.util.List;
 @Mapper
 public interface HeroMapper {
     @Insert({"<script>",
-            "INSERT INTO hero(name, email, sex, country, address, power, created)",
-            "VALUES(#{name}, #{email}, #{sex}, #{country}, #{address}, #{power}, now())",
+            "INSERT INTO hero(name, email, sex, country, address, power, photo, created)",
+            "VALUES(#{name}, #{email}, #{sex}, #{country}, #{address}, #{power}, #{photo}, now())",
             "</script>"})
     int insertHero(HeroVO hero);
 
