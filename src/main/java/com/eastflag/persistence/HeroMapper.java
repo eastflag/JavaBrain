@@ -2,9 +2,11 @@ package com.eastflag.persistence;
 
 import com.eastflag.domain.HeroVO;
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 @Mapper
 public interface HeroMapper {
     @Insert({"<script>",
