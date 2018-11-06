@@ -57,6 +57,14 @@ public class TodoController {
         return todoMapper.selectTodoList(search);
     }
 
+    @GetMapping(value="/api/paged_todo")
+    public Result findPagedTodo(@RequestParam(required = false) Integer start_index, @RequestParam(required = false) Integer page_size) {
+        SearchVO search = new SearchVO();
+        search.setStart_index(start_index);
+        search.setPage_size(page_size);
+        return new ResultDataTotal<>(0, "success", todoMapper.selectTodoList(search), todoMapper.countTodo());
+    }
+
     //news -----------------------------------------------------------------------
     @PostMapping(value="/api/newsList")
     public Result findNews(@RequestBody NewsVO news) {

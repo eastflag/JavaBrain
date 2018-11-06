@@ -35,7 +35,8 @@ public interface HeroMapper {
             "<if test='sex!=null'>sex=#{sex},</if>",
             "<if test='country!=null'>country=#{country},</if>",
             "<if test='address!=null'>address=#{address},</if>",
-            "<if test='power!=null'>data_value3=#{power},</if>",
+            "<if test='power!=null'>power=#{power},</if>",
+            "<if test='photo!=null'>photo=#{photo},</if>",
             "</trim>",
             "WHERE hero_id = #{hero_id}",
             "</script>"})

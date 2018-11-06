@@ -27,6 +27,11 @@ public interface TodoMapper {
     List<TodoVO> selectTodoList(SearchVO search);
 
     @Select({"<script>",
+            "SELECT count(*) FROM todo",
+            "</script>"})
+    int countTodo();
+
+    @Select({"<script>",
             "SELECT * FROM todo",
             "where todo_id = #{todo_id}",
             "</script>"})
