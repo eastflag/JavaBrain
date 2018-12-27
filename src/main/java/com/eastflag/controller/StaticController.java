@@ -50,7 +50,7 @@ public class StaticController {
     // naver 교육용 상용 사이트
     @RequestMapping("/naver_callback3")
     public String naverLogin3(@RequestParam String code, @RequestParam String state, HttpSession session) {
-        return naverLogin(code, state, session, "www.javabrain.kr:3000");
+        return naverLogin(code, state, session, "www.eastflag.co.kr:3000");
     }
 
     // kakao javabrain 사이트 로그인---------------------------------------------------------------------------
@@ -60,7 +60,7 @@ public class StaticController {
         if ("kakao2".equals(state)) {
             redirectUrl = "localhost:4200";
         } else if ("kakao3".equals(state)) {
-            redirectUrl = "www.javabrain.kr:3000";
+            redirectUrl = "www.eastflag.co.kr:3000";
         } else {
             redirectUrl = configConstant.frontHost;
         }
@@ -82,7 +82,7 @@ public class StaticController {
     // facebook 교육용 상용 사이트
     @RequestMapping("/facebook_callback3")
     public String facebookLogin3(@RequestParam String code, @RequestParam String state, HttpSession session) {
-        return facebookLogin(code, state, "/facebook_callback3", "www.javabrain.kr:3000");
+        return facebookLogin(code, state, "/facebook_callback3", "www.eastflag.co.kr:3000");
     }
 
     private String naverLogin(String code, String state, HttpSession session, String redirectUrl) {
