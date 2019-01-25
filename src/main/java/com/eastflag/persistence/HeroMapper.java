@@ -1,6 +1,8 @@
 package com.eastflag.persistence;
 
 import com.eastflag.domain.HeroVO;
+import com.eastflag.domain.SearchVO;
+import com.eastflag.domain.TodoVO;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
@@ -20,6 +22,18 @@ public interface HeroMapper {
             "order by hero_id desc",
             "</script>"})
     List<HeroVO> findHero();
+
+    @Select({"<script>",
+            "SELECT * FROM hero",
+            "order by hero_id desc",
+            "<if test='start_index!=null'>LIMIT #{start_index}, #{page_size}</if>",
+            "</script>"})
+    List<TodoVO> selectHeroList(SearchVO search);
+
+    @Select({"<script>",
+            "SELECT count(*) FROM hero",
+            "</script>"})
+    int countHero();
 
     @Select({"<script>",
             "SELECT * from hero",

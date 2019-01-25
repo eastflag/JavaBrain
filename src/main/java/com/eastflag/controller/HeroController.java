@@ -2,8 +2,10 @@ package com.eastflag.controller;
 
 import com.eastflag.ConfigConstant;
 import com.eastflag.domain.HeroVO;
+import com.eastflag.domain.SearchVO;
 import com.eastflag.persistence.HeroMapper;
 import com.eastflag.result.Result;
+import com.eastflag.result.ResultDataTotal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -37,8 +39,16 @@ public class HeroController {
     }
 
     @GetMapping("/heroes")
-    public List<HeroVO> findOneHero() {
+    public List<HeroVO> findHero() {
         return heroMapper.findHero();
+    }
+
+    @GetMapping(value="/paged_heroes")
+    public Result findPagedHero(@RequestParam(required = false) Integer start_index, @RequestParam(required = false) Integer page_size) {
+        SearchVO search = new SearchVO();
+        search.setStart_index(start_index);
+        search.setPage_size(page_size);
+        return new ResultDataTotal<>(0, "success", heroMapper.selectHeroList(search), heroMapper.countHero());
     }
 
     @PutMapping("/hero")
