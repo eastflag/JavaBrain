@@ -28,7 +28,7 @@ public interface HeroMapper {
             "order by hero_id desc",
             "<if test='start_index!=null'>LIMIT #{start_index}, #{page_size}</if>",
             "</script>"})
-    List<TodoVO> selectHeroList(SearchVO search);
+    List<HeroVO> selectHeroList(SearchVO search);
 
     @Select({"<script>",
             "SELECT count(*) FROM hero",
